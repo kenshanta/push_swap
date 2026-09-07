@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_write_stderr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 19:53:51 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/02 17:37:46 by jziental         ###   ########.fr       */
+/*   Created: 2026/09/05 15:44:46 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/05 16:04:05 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *head)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (!head)
-		return (head);
-	return (head->prev);
+	int i = 0;
+	if (!s)
+	return ;
+	while (s[i])
+		i++;
+	write(fd, s, i);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	char c;
+	long num = n;
+	if (num < 0)
+	{
+		write(fd, "-", 1);
+		num = -num;
+	}
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	c = (num % 10) + '0';
+	write(fd, &c, 1);
 }

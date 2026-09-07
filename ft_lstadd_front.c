@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 19:46:06 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/21 19:51:00 by jziental         ###   ########.fr       */
+/*   Created: 2026/09/03 18:43:36 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/06 19:53:15 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	ft_lstadd_front(t_list **stack, t_list *new)
 {
-	t_list	*lst_map;
-	t_list	*node_map;
-	void	*content;
+	t_list	*head;
+	t_list	*last;
 
-	lst_map = NULL;
-	if (!lst || !f)
-		return (NULL);
-	while (lst)
+	if (!stack || !new)
+		return ;
+	head = *stack;
+	if (!head)
 	{
-		content = f(lst->content);
-		if (!content)
-		{
-			ft_lstclear(&lst_map, del);
-			return (NULL);
-		}
-		node_map = ft_lstnew(content);
-		ft_lstadd_back(&lst_map, node_map);
-		lst = lst->next;
+		*stack = new;
+		new->next = new;
+		new->prev = new;
+		return ;
 	}
-	return (lst_map);
+	last = ft_lstlast(*stack);
+	last->next = new;
+	new->prev = last;
+	new->next = head;
+	head->prev = new;
+	*stack = new;
 }
+

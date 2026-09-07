@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_linked_list.c                                    :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 17:38:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/23 19:30:11 by jziental         ###   ########.fr       */
+/*   Created: 2026/08/29 13:33:26 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/04 16:55:40 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list stack_a;
-t_list stack_b;
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_exit(t_stacks **lst)
 {
-	t_list	*last;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
+	if (lst)
+		ft_toolsfree(lst);
+	write(2, "Error\n", 6);
+	exit(1);
 }

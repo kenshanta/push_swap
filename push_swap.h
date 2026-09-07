@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/23 19:19:39 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/06 19:44:21 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,88 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
-
+# include <limits.h>
+//circular doubly linked list
 typedef struct s_list
 {
 	int				num;
+	int				index;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
-int		ft_putchar(char c);
-int		ft_printf(const char *format, ...);
-int		ft_parse(va_list args, char format);
-int		ft_putstr(char *c);
-int		ft_putint(int c);
-int		ft_putuint(unsigned int i);
-int		ft_puthex(unsigned long long i, char x);
-int		ft_putptr(void *ptr);
-char	**ft_split(char const *s, char c);
+//toolbox struct
+typedef struct s_stacks
+{
+	t_list	*a;
+	t_list	*b;
+	int		c_pa;
+	int		c_pb;
+	int		c_sa;
+	int		c_sb;
+	int		c_ss;
+	int		c_ra;
+	int		c_rb;
+	int		c_rr;
+	int		c_rra;
+	int		c_rrb;
+	int		c_rrr;
+	int		total_ops;
+	int		is_benchmark;
+	int		strategy_index;
+	int		chosen_strategy;
+	int		mistakes;
+	int		pairs;
+}	t_stacks;
+//stack maintenance
+t_stacks	*stacks_init(void);
+void		ft_lstadd_back(t_list **stack, t_list *new);
+void		ft_lstadd_front(t_list **stack, t_list *new);
+void		ft_lstclear(t_list **lst);
+void		ft_toolsfree(t_stacks **stacks);
+t_list		*ft_lstlast(t_list *head);
+void		ft_exit(t_stacks *lst);
+void		ft_lstdelone(t_list **lst);
+t_list		*ft_lstnew(int content);
+//stack operations helpers
+int			push(t_list **source, t_list **dest);
+int			swap(t_list **stack);
+int			rotate(t_list **stack);
+int			rev_rotate(t_list **stack);
+//stack operations
+void		pa(t_stacks *toolbox);
+void		pb(t_stacks *toolbox);
+void		sa(t_stacks *toolbox);
+void		sb(t_stacks *toolbox);
+void		ss(t_stacks *toolbox);
+void		ra(t_stacks *toolbox);
+void		rb(t_stacks *toolbox);
+void		rr(t_stacks *toolbox);
+void		rra(t_stacks *toolbox);
+void		rrb(t_stacks *toolbox);
+void		rrr(t_stacks *toolbox);
+//printing output
+void		benchmark(t_stacks **toolbox);
+int			ft_putchar(char c);
+int			ft_printf(const char *format, ...);
+int			ft_parse(va_list args, char format);
+int			ft_putstr(char *c);
+int			ft_putint(int c);
+int			ft_putuint(unsigned int i);
+int			ft_puthex(unsigned long long i, char x);
+int			ft_putptr(void *ptr);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
+//parsing
+# define STRATEGY_ADAPTIVE 0
+# define STRATEGY_SIMPLE 1
+# define STRATEGY_MEDIUM 2
+# define STRATEGY_COMPLEX 3
+
+char		**ft_split(char const *s, char c);
+void		*ft_calloc(size_t nmemb, size_t size);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_atoi(const char *nptr);
+int			ft_isdigit(int c);
+int			ft_onlydigits(char **str);
+int			has_whitespaces(char *nptr);
 #endif

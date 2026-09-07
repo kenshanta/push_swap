@@ -1,0 +1,12 @@
+# Agent instructions
+AGENTS.md
+
+# Object files
+*.o
+
+# Output files
+*.out
+
+# Push_swap executables
+push_swap
+checker

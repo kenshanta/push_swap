@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 20:40:19 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/21 16:41:28 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/07 17:42:10 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,4 @@ int	ft_parse(va_list args, char format)
 		return (-1);
 	return (count);
 }
-//Auxiliary test main() in README
-#include <stdio.h>
-int main()
-{
-	ft_printf("%u\n", -1);
-	printf("%u\n", -1);
-	return (-1);
-}
+

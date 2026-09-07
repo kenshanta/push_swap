@@ -6,16 +6,23 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 17:00:33 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/23 20:06:56 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/06 14:49:25 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list **lst)
 {
-	if (!lst || !del)
+	if (!*lst)
 		return ;
-	del(lst->num);
-	free(lst);
+	if ((*lst)->next == *lst)
+		*lst = NULL;
+	else
+	{
+		(*lst)->prev->next = (*lst)->next;
+		(*lst)->next->prev = (*lst)->prev;
+	}
+	free(*lst);
+	*lst = NULL;
 }

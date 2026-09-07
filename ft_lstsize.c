@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 19:42:32 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/21 19:51:05 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:40:43 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	long	size;
+	int		size;
+	t_list	*tmp;
 
 	size = 0;
-	while (lst != NULL)
+	tmp = NULL;
+	if (lst)
 	{
-		size++;
-		lst = lst->next;
+		size = 1;
+		tmp = lst->next;
+		while (tmp != lst)
+		{
+			size++;
+			lst = lst->next;
+			tmp = lst;
+		}
 	}
-	return ((int)size);
+	return (size);
 }

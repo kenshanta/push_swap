@@ -6,54 +6,49 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 19:07:43 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/21 16:45:51 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/05 16:04:41 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-float compute_disorder(int *a, size_t size)
+void compute_disorder(t_stacks **toolbox,  t_list *a)
 {
-	float	mistakes;
-	float	total_pairs;
-	size_t	i;
-	size_t	j;
+	t_list	*i;
+	t_list	*j;
 
-	mistakes = 0;
-	total_pairs = 0;
-	i = 0;
-	j = 0;
-	while (i < size - 1)
+	i = a;
+	while (i->next != a)
 	{
-		printf("i:%ld\n", i);
-		j = i + 1;
-		while (j < size - 1)
+		j = i->next;
+		while (j != a)
 		{
-			total_pairs += 1;
-			printf("j:%ld, pairs:%f\n", j, total_pairs);
-			if (a[i] > a[j])
-				mistakes += 1;
-			printf("%d>?%d\n", a[i], a[j]);
-			printf("%f\n____________", mistakes);
-			j++;
+			(*toolbox)->pairs += 1;
+			if (i->num > j->num)
+				(*toolbox)->mistakes += 1;
+			else if (i->num == j->num)
+				ft_exit(*toolbox);
+			j = j->next;
 		}
-		i++;
+		i = i->next;
 	}
-return (mistakes / total_pairs);
 }
+//int main()
+//{
+//	t_stacks *toolbox;
+//	t_list	*node;
+//	int		nums[] = {5, 3, 7, 6, -5, 0};
+//	int		i = 0;
 
-int main()
-{
-	//int	i = 0;
-	int set[] = {5, 2, 3, 1};
-	size_t size = sizeof(set)/sizeof(set[0]);
-	//int len = sizeof(set)/sizeof(set[0]);
-	printf("\ndisorder = %f", compute_disorder(set, size));
-	//while(i < len)
-	//{
-	//printf("", set[i]);
-	//i++;
-	//}
-	return (0);
-}
+//	toolbox = stacks_init();
+//	while (nums[i])
+//	{
+//		node = ft_lstnew(nums[i++]);
+//		ft_lstadd_back(&toolbox->a, node);
+//	}
+//	compute_disorder(&toolbox, toolbox->a);
+//	printf("%d/%d", toolbox->mistakes, toolbox->pairs);
+//	ft_toolsfree(&toolbox);
+//	return (0);
+//}
