@@ -1,16 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   lst_ops_sec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 17:30:55 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/06 17:49:26 by jziental         ###   ########.fr       */
+/*   Created: 2026/07/13 20:19:56 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/09 16:55:23 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_lstadd_front(t_list **stack, t_list *new)
+{
+	t_list	*head;
+	t_list	*last;
+
+	if (!stack || !new)
+		return ;
+	head = *stack;
+	if (!head)
+	{
+		*stack = new;
+		new->next = new;
+		new->prev = new;
+		return ;
+	}
+	last = ft_lstlast(*stack);
+	last->next = new;
+	new->prev = last;
+	new->next = head;
+	head->prev = new;
+	*stack = new;
+}
+
+void	ft_lstadd_back(t_list **stack, t_list *new)
+{
+	t_list	*last;
+	t_list	*head;
+
+	if (!stack || !new)
+		return ;
+	head = *stack;
+	if (!*stack || !head)
+	{
+		*stack = new;
+		new->next = new;
+		new->prev = new;
+		return ;
+	}
+	last = ft_lstlast(*stack);
+	last->next = new;
+	new->next = head;
+	new->prev = last;
+	head->prev = new;
+}
 
 void	ft_toolsfree(t_stacks **stacks)
 {

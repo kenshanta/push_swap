@@ -52,10 +52,12 @@ make fclean
 make re
 make -s (flag to silence all commands)
 ```
-Running the program:
+Running the program:\
+_**flags**_ have to be typed _**first**_
 ```sh
 ./push_swap --complex --bench  1 2 3 -54 -42 42 12
 ```
+
 Test cases are in the section _Authors tests_ at the end of this file
 ## Repository structure
 
@@ -65,7 +67,7 @@ Test cases are in the section _Authors tests_ at the end of this file
 
 # Resources
 
-- [42 printf subject ](https://cdn.intra.42.fr/pdf/pdf/206637/en.subject.pdf)
+- [42 Push_swap subject ](https://cdn.intra.42.fr/pdf/pdf/206637/en.subject.pdf)
 - [The C standard library reference](https://cppreference.com)
 - [GNU _make_ tutorial](https://www.gnu.org/software/make/manual/make.html)
 - AI tools as a helper for research, explanations, and inspiration while keeping the implementation verified mainly manually
@@ -82,7 +84,7 @@ To be accepted by the 42 evaluation system, the project must:
 
 ## Notes
 
-This README was generated with AI assistance and then checked thoroughly to ensure it matches the project purpose and the 42 push_swap requirements.
+This whole project was created with collaborative effort of jziental, skovlekj with AI and other 42 peers assistance. Authors checked it thoroughly to ensure it matches the project purpose and the 42 Push_swap Subject requirements.
 
 ### Authors tests
 

@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 14:20:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/06 17:47:21 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/09 17:22:01 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,21 @@ void	benchmark(t_stacks **toolbox)
 	print_strategy(*toolbox);
 	print_operations_counts(*toolbox);
 }
-int main()
-{
-	t_stacks *toolbox;
-	t_list	*node;
-	int		nums[] = {5, 3, 7, 6, -5, 0};
-	int		i = 0;
+//int main()
+//{
+//	t_stacks *toolbox;
+//	t_list	*node;
+//	int		nums[] = {5, 3, 7, 6, -5, 0};
+//	int		i = 0;
 
-	toolbox = stacks_init();
-	while (nums[i])
-	{
-		node = ft_lstnew(nums[i++]);
-		ft_lstadd_back(&toolbox->a, node);
-	}
-	toolbox->chosen_strategy = 2;
-	benchmark(&toolbox);
-	ft_toolsfree(&toolbox);
-	return (0);
-}
+//	toolbox = stacks_init();
+//	while (nums[i])
+//	{
+//		node = ft_lstnew(nums[i++]);
+//		ft_lstadd_back(&toolbox->a, node);
+//	}
+//	toolbox->chosen_strategy = 2;
+//	benchmark(&toolbox);
+//	ft_toolsfree(&toolbox);
+//	return (0);
+//}

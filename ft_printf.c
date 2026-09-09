@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/27 20:40:19 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/07 17:42:10 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/09 17:21:29 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,9 @@ int	ft_parse(va_list args, char format)
 	return (count);
 }
 
+int	ft_putchar(char c)
+{
+	if (write(1, &c, 1) < 0)
+		return (-1);
+	return (1);
+}
