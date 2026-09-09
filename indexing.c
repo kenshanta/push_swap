@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//CURRENTLY DEBUGGING
 // Sorts the array in ascending order and returns the same pointer.
 static int	*ft_selection(int *set, int length)
 {
@@ -46,9 +45,9 @@ static int	stack_length(t_list *stack)
 
 	if (!stack)
 		return (0);
-	current = stack;
+	current = stack->next;
 	count = 1;
-	while (current->next != stack)
+	while (current != stack)
 	{
 		count++;
 		current = current->next;
@@ -56,7 +55,7 @@ static int	stack_length(t_list *stack)
 	return (count);
 }
 //make copies values from stack to array set
-static int	*make_set(t_list **stack)
+static int	*make_set(t_stacks **toolbox)
 {
 	t_list	*current;
 	int		*set;
@@ -64,45 +63,40 @@ static int	*make_set(t_list **stack)
 	int		i;
 	int		j;
 
-	if (!stack || !*stack)
-		return (ft_exit(stack), 0);
-	length = stack_length(*stack);
+	if (!toolbox || !(*toolbox)->a)
+		return (ft_exit(toolbox), 0);
+	length = stack_length((*toolbox)->a);
 	set = malloc(sizeof(int) * length);
 	if (!set)
-		return (ft_exit(stack), 0);
+		return (ft_exit(toolbox), 0);
 	i = 0;
-	current = *stack;
-	while (current->next != *stack)
+	current = (*toolbox)->a;
+	while (i < length)
 	{
 		set[i++] = current->num;
 		current = current->next;
 	}
-	return (ft_selection(set, length));
+	return (set);
 }
 //assign indexes based on comparing nums in sorted array and stack a
-void	*assign_indexes(t_stacks **toolbox)
+void	assign_indexes(t_stacks **toolbox)
 {
 	t_list	*current;
 	int		length;
 	int		*set;
 	int		i;
 
+	if (!toolbox || !(*toolbox)->a)
+		return ;
 	length = stack_length((*toolbox)->a);
 	set = ft_selection(make_set(toolbox), length);
 	i = 0;
+	current = (*toolbox)->a;
 	while (i < length)
 	{
-		current = (*toolbox)->a;
-		while (current->next != (*toolbox)->a)
-		{
-			if (current->num == set[i])
-			{
-				current->index = i;
-				break;
-			}
+		while (current->num != set[i])
 			current = current->next;
-		}
-		i++;
+		current->index = i++;
 	}
 	free(set);
 }
