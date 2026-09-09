@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/06 19:44:21 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/09 19:10:49 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_list		*ft_lstlast(t_list *head);
 void		ft_exit(t_stacks *lst);
 void		ft_lstdelone(t_list **lst);
 t_list		*ft_lstnew(int content);
+int			stack_length(t_list *stack);
 //stack operations helpers
 int			push(t_list **source, t_list **dest);
 int			swap(t_list **stack);
