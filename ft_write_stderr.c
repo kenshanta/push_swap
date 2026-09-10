@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_linked_list.c                                    :+:      :+:    :+:   */
+/*   ft_write_stderr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 17:38:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/23 19:30:11 by jziental         ###   ########.fr       */
+/*   Created: 2026/09/05 15:44:46 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/05 16:04:05 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list stack_a;
-t_list stack_b;
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_list	*last;
+	int i = 0;
+	if (!s)
+	return ;
+	while (s[i])
+		i++;
+	write(fd, s, i);
+}
 
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+void	ft_putnbr_fd(int n, int fd)
+{
+	char c;
+	long num = n;
+	if (num < 0)
 	{
-		*lst = new;
-		return ;
+		write(fd, "-", 1);
+		num = -num;
 	}
-	last = ft_lstlast(*lst);
-	last->next = new;
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	c = (num % 10) + '0';
+	write(fd, &c, 1);
 }

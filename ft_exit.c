@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/15 17:30:55 by jziental          #+#    #+#             */
-/*   Updated: 2026/08/21 19:50:50 by jziental         ###   ########.fr       */
+/*   Created: 2026/08/29 13:33:26 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/04 16:55:40 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_exit(t_stacks **lst)
 {
-	t_list	*tmp;
-
-	if (!lst || !*lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
-	*lst = NULL;
+	if (lst)
+		ft_toolsfree(lst);
+	write(2, "Error\n", 6);
+	exit(1);
 }
