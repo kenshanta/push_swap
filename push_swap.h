@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/09 19:10:49 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:33:40 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_stacks
 	int		mistakes;
 	int		pairs;
 }	t_stacks;
+//strategies
+void	simple_sort (t_stacks *toolbox);
 //stack maintenance
 t_stacks	*stacks_init(void);
 void		ft_lstadd_back(t_list **stack, t_list *new);
@@ -54,7 +56,7 @@ void		ft_lstadd_front(t_list **stack, t_list *new);
 void		ft_lstclear(t_list **lst);
 void		ft_toolsfree(t_stacks **stacks);
 t_list		*ft_lstlast(t_list *head);
-void		ft_exit(t_stacks *lst);
+void		ft_exit(t_stacks **lst);
 void		ft_lstdelone(t_list **lst);
 t_list		*ft_lstnew(int content);
 int			stack_length(t_list *stack);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ints_ops.c                                         :+:      :+:    :+:   */
+/*   ints_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 19:18:38 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/09 17:24:07 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:29:36 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	whitespaces(char *nptr)
 
 int	ft_atoi(const char *nptr)
 {
-	int		i;
+	int			i;
 	long long	num;
 	long long	sign;
 
@@ -49,13 +49,14 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
+
 int	ft_onlydigits(char **str)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while(str[j])
+	while (str[j])
 	{
 		i = 0;
 		if (str[j][i] == '-' || str[j][i] == '+')
@@ -72,6 +73,7 @@ int	ft_onlydigits(char **str)
 	}
 	return (1);
 }
+
 int	has_whitespaces(char *nptr)
 {
 	int	i;
@@ -80,7 +82,7 @@ int	has_whitespaces(char *nptr)
 	while (nptr[i])
 	{
 		if (nptr[i] == ' ' || nptr[i] == '\f' || nptr[i] == '\n'
-		|| nptr[i] == '\r' || nptr[i] == '\t' || nptr[i] == '\v')
+			|| nptr[i] == '\r' || nptr[i] == '\t' || nptr[i] == '\v')
 			return (1);
 		i++;
 	}
@@ -104,9 +106,9 @@ int	has_whitespaces(char *nptr)
 //	int i = 0;
 //	printf("min=%d, max=%d\n", INT_MIN, INT_MAX);
 //	char *s[] = {"   +2147483647", "2d", "\0", "  -  123", "-2147483648",
-//				"002", "-2147483648", "0 02", "   --00002", "121232", "   -02", "",
-//				 "    ", "--123", "abc", "999dx2", "003458", "999888777666555",
-//				 "-+48","-", NULL};
+//				"002", "-2147483648", "0 02", "   --00002",
+// "121232", "   -02", "","    ", "--123", "abc", "999dx2", "003458",
+// "999888777666555","-+48","-", NULL};
 //	while (s[i])
 //	{
 //		ft_printf("ft_atoi(%s) = %d\n", s[i], ft_atoi(s[i]));
