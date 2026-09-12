@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/11 17:33:40 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/12 14:36:32 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,25 @@ typedef struct s_stacks
 	int		pairs;
 }	t_stacks;
 //strategies
+void	push_swap(t_stacks **toolbox);
 void	simple_sort (t_stacks *toolbox);
+void	assign_indexes(t_stacks **toolbox);
 //stack maintenance
 t_stacks	*stacks_init(void);
-void		ft_lstadd_back(t_list **stack, t_list *new);
-void		ft_lstadd_front(t_list **stack, t_list *new);
-void		ft_lstclear(t_list **lst);
-void		ft_toolsfree(t_stacks **stacks);
-t_list		*ft_lstlast(t_list *head);
-void		ft_exit(t_stacks **lst);
-void		ft_lstdelone(t_list **lst);
 t_list		*ft_lstnew(int content);
+void		ft_exit(t_stacks **lst);
+t_list		*ft_lstlast(t_list *head);
+void		ft_lstclear(t_list **lst);
+void		ft_lstdelone(t_list **lst);
 int			stack_length(t_list *stack);
+void		ft_toolsfree(t_stacks **stacks);
+void		ft_lstadd_front(t_list **stack, t_list *new);
+void		ft_lstadd_back(t_list **stack, t_list *new);
 //stack operations helpers
-int			push(t_list **source, t_list **dest);
 int			swap(t_list **stack);
 int			rotate(t_list **stack);
 int			rev_rotate(t_list **stack);
+int			push(t_list **source, t_list **dest);
 //stack operations
 void		pa(t_stacks *toolbox);
 void		pb(t_stacks *toolbox);
@@ -78,28 +80,30 @@ void		rra(t_stacks *toolbox);
 void		rrb(t_stacks *toolbox);
 void		rrr(t_stacks *toolbox);
 //printing output
-void		benchmark(t_stacks **toolbox);
+int			ft_putint(int c);
+int			ft_putstr(char *c);
 int			ft_putchar(char c);
+int			ft_putptr(void *ptr);
+int			ft_putuint(unsigned int i);
+void		ft_putnbr_fd(int n, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		benchmark(t_stacks **toolbox);
 int			ft_printf(const char *format, ...);
 int			ft_parse(va_list args, char format);
-int			ft_putstr(char *c);
-int			ft_putint(int c);
-int			ft_putuint(unsigned int i);
 int			ft_puthex(unsigned long long i, char x);
-int			ft_putptr(void *ptr);
-void		ft_putstr_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
 //parsing
 # define STRATEGY_ADAPTIVE 0
 # define STRATEGY_SIMPLE 1
 # define STRATEGY_MEDIUM 2
 # define STRATEGY_COMPLEX 3
-
-char		**ft_split(char const *s, char c);
-void		*ft_calloc(size_t nmemb, size_t size);
-int			ft_strcmp(const char *s1, const char *s2);
-int			ft_atoi(const char *nptr);
 int			ft_isdigit(int c);
 int			ft_onlydigits(char **str);
+int			ft_atoi(const char *nptr);
 int			has_whitespaces(char *nptr);
+char		**ft_split(char const *s, char c);
+void		*ft_calloc(size_t nmemb, size_t size);
+void		take_ints(char **str, t_stacks *stacks);
+int			check_flags(char **av, t_stacks *stacks);
+int			ft_strcmp(const char *s1, const char *s2);
+void		check_write_args(int ac, char **av, t_stacks *stacks);
 #endif

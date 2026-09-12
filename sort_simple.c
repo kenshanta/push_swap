@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 18:11:17 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/11 17:27:32 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/12 14:28:22 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	find_smallest(t_stacks *toolbox, int index)
 
 void	simple_sort(t_stacks *toolbox)
 {
-	int		min_index;
-	int		length;
-	int		moves_to_top;
+	int	min_index;
+	int	length;
+	int	moves_to_top;
 
 	min_index = 0;
 	length = stack_length(toolbox->a);
