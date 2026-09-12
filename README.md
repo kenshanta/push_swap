@@ -53,7 +53,7 @@ make re
 make -s (flag to silence all commands)
 ```
 Running the program:\
-_**flags**_ have to be typed _**first**_
+_**flags**_ have to be typed _**first**_then only integer arguments
 ```sh
 ./push_swap --complex --bench  1 2 3 -54 -42 42 12
 ```
