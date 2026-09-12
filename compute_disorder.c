@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 19:07:43 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/05 16:04:41 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:34:44 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void compute_disorder(t_stacks **toolbox,  t_list *a)
 			if (i->num > j->num)
 				(*toolbox)->mistakes += 1;
 			else if (i->num == j->num)
-				ft_exit(*toolbox);
+				ft_exit(toolbox);
 			j = j->next;
 		}
 		i = i->next;

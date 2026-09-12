@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 17:12:07 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/09 19:08:39 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/12 15:11:41 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,13 @@ static int	*make_set(t_stacks **toolbox)
 	int		*set;
 	int		length;
 	int		i;
-	int		j;
 
 	if (!toolbox || !(*toolbox)->a)
-		return (ft_exit(toolbox), 0);
+		return (ft_exit(toolbox), NULL);
 	length = stack_length((*toolbox)->a);
 	set = malloc(sizeof(int) * length);
 	if (!set)
-		return (ft_exit(toolbox), 0);
+		return (ft_exit(toolbox), NULL);
 	i = 0;
 	current = (*toolbox)->a;
 	while (i < length)
