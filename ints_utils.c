@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 19:18:38 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/11 17:29:36 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:16:56 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	whitespaces(char *nptr)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
 	int			i;
 	long long	num;
@@ -88,15 +88,7 @@ int	has_whitespaces(char *nptr)
 	}
 	return (0);
 }
-//#include <stdio.h>
-//int main() //int ziemniak, char	**ziemniaki
-//{
-////	if (ziemniak == 1 && ziemniaki)
-////		printf("co?%s, ile?%d\n\n", ziemniaki[0], ziemniak);
-//	char *args[4] = {"123", "567", "-", NULL};
-//	printf("%i", ft_onlydigits(args));
-//	return 0;
-//}
+
 //#include <stdlib.h>
 //#include <stdio.h>
 //#include <limits.h>
@@ -108,12 +100,13 @@ int	has_whitespaces(char *nptr)
 //	char *s[] = {"   +2147483647", "2d", "\0", "  -  123", "-2147483648",
 //				"002", "-2147483648", "0 02", "   --00002",
 // "121232", "   -02", "","    ", "--123", "abc", "999dx2", "003458",
-// "999888777666555","-+48","-", NULL};
+// "999888777666555","-+48","-","-3147000000", NULL};
 //	while (s[i])
 //	{
 //		ft_printf("ft_atoi(%s) = %d\n", s[i], ft_atoi(s[i]));
 //		printf("   atoi(%s) = %d\n", s[i], atoi(s[i]));
 //		i++;
 //	}
+//	printf("int: %ld\nlong:%ld\nlong long%ld", sizeof(int), sizeof(long),sizeof(long long));
 //	return (0);
 //}

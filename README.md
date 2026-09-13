@@ -27,9 +27,21 @@ These are:
 - --medium forces the use of O(n√n) algorithm.
 - --complex forces the use of O(n log n) algorithm.
 - --adaptive (default) forces the use of adaptive algorithm based on disorder.
-### Detailed explanation and justification
+## Detailed explanation and justification
+### Indexing
+Selection sort used as a helper to give every given integer a target index in sorted stack
+### Simple startegy
+Selection sort which compares current top integer with minimum found by indexing
+### Medium strategy
+### Complex strategy
+Radix sort implemented using bitwise operation and indexing
 
-
+Sources:
+[Bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operations_in_C)
+[How radix sorting works video] (https://www.youtube.com/watch?v=mVRHvZF8xtg&pp=ygUKcmFkaXggc29ydA%3D%3D)
+[How radix sorting works wiki](https://en.wikipedia.org/wiki/Radix_sort)
+### Adaptive startegy
+One of the sorting strategies above is chosen based on disorder computed in
 ## Project goal
 
 - Create a program named `push_swap.a`
@@ -89,5 +101,22 @@ This whole project was created with collaborative effort of jziental, skovlekj w
 ### Authors tests
 
 ```sh
-//insert ./push_swap arguments test cases
+#EDGE CASES
+./push_swap 3 2 1	//naive check
+./push_swap				//nothing passed
+./push_swap --bench --mistake //wrong argument
+./push_swap "-3 -2 -1" 5 7 -513 "213 "	//taking arguments with and without ""
+./push_swap --bench 1 2, 3 //wrong argument - only valid separator is whitespace " "
+./push_swap 1 2 3		//already sorted
+./push_swap 1 2 -3444555666 // < INT_MIN
+./push_swap 1 2 3444555666 //  > INT_MAX
+#PERFORMANCE
+shuf -i 0-9999 -n 100 > args.txt ; ./push_swap $(cat args.txt) | wc -l //num of operations for 100 random integers from 0 to 9999
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | wc -l //num of operations for 500 random integers from 0 to 9999
+#CHECKER VERIFICATION
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for ADAPTIVE
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --simple $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for SIMPLE
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --medium $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for MEDIUM
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --complex $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for COMPLEX
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench $(cat args.txt) 2>bench.txt| ./checker_linux $(cat args.txt) //check if benchmark output is stderr
 ```

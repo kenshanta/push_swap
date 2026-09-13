@@ -13,3 +13,6 @@ AGENTS.md
 # Push_swap executables
 push_swap
 checker_linux
+
+#json
+*.json

@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/12 14:36:32 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:15:40 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void	assign_indexes(t_stacks **toolbox);
 //stack maintenance
 t_stacks	*stacks_init(void);
 t_list		*ft_lstnew(int content);
-void		ft_exit(t_stacks **lst);
 t_list		*ft_lstlast(t_list *head);
 void		ft_lstclear(t_list **lst);
 void		ft_lstdelone(t_list **lst);
 int			stack_length(t_list *stack);
 void		ft_toolsfree(t_stacks **stacks);
+void		ft_exit(t_stacks **lst, int say_error);
 void		ft_lstadd_front(t_list **stack, t_list *new);
 void		ft_lstadd_back(t_list **stack, t_list *new);
 //stack operations helpers
@@ -98,12 +98,13 @@ int			ft_puthex(unsigned long long i, char x);
 # define STRATEGY_COMPLEX 3
 int			ft_isdigit(int c);
 int			ft_onlydigits(char **str);
-int			ft_atoi(const char *nptr);
+long long	ft_atoi(const char *nptr);
 int			has_whitespaces(char *nptr);
 char		**ft_split(char const *s, char c);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		take_ints(char **str, t_stacks *stacks);
 int			check_flags(char **av, t_stacks *stacks);
 int			ft_strcmp(const char *s1, const char *s2);
+void 		compute_disorder(t_stacks **toolbox,  t_list *a);
 void		check_write_args(int ac, char **av, t_stacks *stacks);
 #endif
