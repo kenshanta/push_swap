@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 14:20:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/09 17:22:01 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:32:44 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void print_disorder_bench(t_stacks *toolbox)
 	if (frac < 10)
 		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(frac, 2);
-	ft_putstr_fd("%%\n", 2);
+	ft_putstr_fd("%\n", 2);
 }
 static void print_operations_counts (t_stacks *toolbox)
 {

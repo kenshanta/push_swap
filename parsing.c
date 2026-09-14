@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 11:39:35 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/12 12:30:14 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/13 17:45:18 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	take_ints(char **str, t_stacks *stacks)
 	{
 		tmp = ft_split(str[i], ' ');
 		if (!tmp || !ft_onlydigits(tmp))		//if splited arguments aren't digits free and "Error\n"
-			return (free_split(tmp), ft_exit(&stacks));
+			return (free_split(tmp), ft_exit(&stacks, 1));
 		j = 0;
 		while (tmp[j])					//otherwise:
 		{
 			num = ft_atoi(tmp[j++]);	//convert char* to int and go on
 			if (num > INT_MAX || num < INT_MIN)
-				return (free_split(tmp), ft_exit(&stacks));
+				return (free_split(tmp), ft_exit(&stacks, 1));
 			node = ft_lstnew(num);
 			ft_lstadd_back(&stacks->a, node);
 		}
@@ -84,14 +84,14 @@ void	check_write_args(int ac, char **av, t_stacks *stacks)
 		exit(0);
 	}
 	else if (!av[1][0])
-		return (ft_exit(&stacks));
+		return (ft_exit(&stacks, 1));
 	else if (ac >= 2)
 	{
 		i = check_flags(av, stacks);
 		if(av[i])
 			take_ints(av + i, stacks);
 		else
-			ft_exit(&stacks);
+			ft_exit(&stacks, 1);
 	}
 }
 
@@ -101,7 +101,7 @@ t_stacks	*stacks_init()
 
 	stacks = malloc(sizeof(t_stacks));
 	if (!stacks)
-		ft_exit(&stacks);
+		ft_exit(&stacks, 1);
 	stacks->a = NULL;
 	stacks->b = NULL;
 	stacks->strategy_index = STRATEGY_ADAPTIVE;
