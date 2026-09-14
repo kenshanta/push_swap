@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 static void	chose_strategy(t_stacks **toolbox)
 {
 	float	disorder;
@@ -37,7 +38,7 @@ void	push_swap(t_stacks **toolbox)
 	if ((*toolbox)->strategy_index == STRATEGY_SIMPLE)
 		simple_sort(*toolbox);
 	else if ((*toolbox)->strategy_index == STRATEGY_MEDIUM)
-		simple_sort(*toolbox);
+		medium_sort(*toolbox);
 	else if ((*toolbox)->strategy_index == STRATEGY_COMPLEX)
 		simple_sort(*toolbox);
 	else
