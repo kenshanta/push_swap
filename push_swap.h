@@ -50,6 +50,7 @@ typedef struct s_stacks
 //strategies
 void	push_swap(t_stacks **toolbox);
 void	simple_sort (t_stacks *toolbox);
+void    medium_sort(t_stacks *toolbox);
 void	assign_indexes(t_stacks **toolbox);
 //stack maintenance
 t_stacks	*stacks_init(void);
