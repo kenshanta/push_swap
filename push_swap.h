@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 17:37:27 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 18:15:40 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:28:49 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,17 @@ typedef struct s_stacks
 	int		c_rra;
 	int		c_rrb;
 	int		c_rrr;
+	int		pairs;
+	int		mistakes;
 	int		total_ops;
 	int		is_benchmark;
-	int		strategy_index;
+	int		strategy_flag;
 	int		chosen_strategy;
-	int		mistakes;
-	int		pairs;
 }	t_stacks;
 //strategies
 void	push_swap(t_stacks **toolbox);
 void	simple_sort (t_stacks *toolbox);
+void	complex_sort (t_stacks *toolbox);
 void	assign_indexes(t_stacks **toolbox);
 //stack maintenance
 t_stacks	*stacks_init(void);
