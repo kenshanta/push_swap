@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 17:17:03 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 14:20:44 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:58:07 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ static int	radix_num(t_stacks *toolbox)
 void	complex_sort(t_stacks *toolbox)
 {
 	int	i;
-	int	num_of_digits;
+	int	num_of_bits;
 	int length;
 
 	i = 0;
-	num_of_digits = radix_num(toolbox);
-	while (i < num_of_digits - 1)
+	num_of_bits = radix_num(toolbox);
+	while (i < num_of_bits)
 	{
-		length = stack_length(toolbox);
+		length = stack_length(toolbox->a);
 		while (length)
 		{
-			if (toolbox->a->num >> i & 1)
+			if ((toolbox->a->num << i & 1) == 0)
 				ra(toolbox);
 			else
 				pb(toolbox);
 			length--;
 		}
+		while (toolbox->b)
+			pa(toolbox);
 		i++;
 	}
-	while (toolbox->b)
-		pa(toolbox);
-
 }
+
