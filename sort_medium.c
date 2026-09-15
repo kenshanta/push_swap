@@ -11,28 +11,31 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-// static  divide_into_chunks()
-// {
-
-// }
 static int	ft_sqrt(int nb)
 {
-	int	i;
+	float	sqrt;
+    float temp;
+    int i;
 
-	i = 1;
-	if (nb < 0)
-		return (0);
-	while (i < nb / i)
+	if (nb < 0 || !nb)
+        return (0);
+    i = 0;
+    sqrt = nb / 2.0f;
+    while (i < 10)
+    {
+        temp = sqrt;
+        sqrt = (temp + nb / temp) / 2.0f;
+        if(temp == sqrt)
+            break;
         i++;
-    if (i == nb / i)
-        return (i);
-	else
-		return (0);
+    }
+   return((int)sqrt);
 }
 
 void    medium_sort(t_stacks *toolbox)
 {
-    int stack_len;
+
+     int stack_len;
     int chunk_size;
     int chunk_max_range;
     int count;
@@ -44,26 +47,29 @@ void    medium_sort(t_stacks *toolbox)
     chunk_max_range = ft_sqrt(stack_len);
     while (stack_len > 0)
     {
-        count = chunk_size;
-        while(count)
+        count = 0;
+        while(stack_len > 0 && count < stack_len)
         {
-            if(toolbox->a->index <= chunk_max_range)
+            if(toolbox->a->index < chunk_max_range)
             {
+                int idx = toolbox->a->index;
                 pb(toolbox);
-                if (toolbox->a->index <= chunk_max_range / 2)
-                    rb(toolbox);                
-                count--;
+                if (idx > chunk_max_range / 2)
+                    rb(toolbox);
+                stack_len--;
             }
             else
+            {
                 ra(toolbox);
+                count++;
+            }
         }
-        ft_printf("current b index: %i\n", toolbox->b->index);
+        // ft_printf("current b index: %i\n", toolbox->b->index);
         chunk_max_range += chunk_size;
-        stack_len -= chunk_size;
     }
     while (toolbox->b)
     {
         pa(toolbox);
-        ft_printf("current value stack a: %i\n", toolbox->a->num);
+        // ft_printf("current value stack a: %i\n", toolbox->a->num);
     }
 }
