@@ -32,44 +32,98 @@ static int	ft_sqrt(int nb)
    return((int)sqrt);
 }
 
+static int	get_chunk_size(int	stack_length)
+{
+	if (stack_length <= 20)
+		return (4);
+	else if (stack_length <= 100)
+		return (16);
+	else if (stack_length <= 500)
+		return (32);
+	else
+		return (ft_sqrt(stack_length));
+}
+
+static int get_max_pos(t_list *b)
+{
+	int	i;
+	int	max_idx;
+	int	max_pos;
+	t_list	*head;
+
+	head = b;
+	max_idx = b->index;
+	max_pos = 0;
+	i = 0;
+	while (1)
+	{
+		if (b->index > max_idx)
+		{
+			max_idx = b->index;
+			max_pos = i;
+		}
+		b = b->next;
+		i++;
+		if (b == head)
+			break;
+	}
+	return(max_pos);
+}
+
+static void push_b_to_a(t_stacks *toolbox)
+{
+	int	max_pos;
+	int	size;
+	// ---- testing putposes ----
+	// t_list	*head;
+
+	while (toolbox->b)
+	{
+		max_pos = get_max_pos(toolbox->b);
+		size = stack_length(toolbox->b);
+		if (max_pos <= size /2)
+		{
+			while (max_pos--)
+				rb(toolbox);
+		}
+		else
+		{
+			size = size - max_pos;
+			while (size--)
+				rrb(toolbox);
+		}
+		pa(toolbox);
+	}
+	//--- manual tester ---
+	// head = toolbox->a;
+	// while (toolbox->a)
+    // {
+    //     ft_printf("current value stack a: %i\n", toolbox->a->num);
+	// 	toolbox->a = toolbox->a->next;
+	// 	if(toolbox->a == head)
+	// 		break;
+    // }
+}
+
 void    medium_sort(t_stacks *toolbox)
 {
-
-     int stack_len;
     int chunk_size;
     int chunk_max_range;
-    int count;
 
-    stack_len = 0;
-    if (toolbox->a)
-        stack_len = stack_length(toolbox->a);
-    chunk_size = ft_sqrt(stack_len);
-    chunk_max_range = ft_sqrt(stack_len);
-    while (stack_len > 0)
+    chunk_size = get_chunk_size(stack_length(toolbox->a));
+    chunk_max_range = chunk_size;
+    while (toolbox->a)
     {
-        count = 0;
-        while(stack_len > 0 && count < stack_len)
-        {
-            if(toolbox->a->index < chunk_max_range)
-            {
-                int idx = toolbox->a->index;
-                pb(toolbox);
-                if (idx > chunk_max_range / 2)
-                    rb(toolbox);
-                stack_len--;
-            }
-            else
-            {
-                ra(toolbox);
-                count++;
-            }
-        }
-        // ft_printf("current b index: %i\n", toolbox->b->index);
+		if(toolbox->a->index < chunk_max_range)
+		{
+			pb(toolbox);
+			if (toolbox->b->index < chunk_max_range - (chunk_size / 2))
+				rb(toolbox);
+		}
+		else
+			ra(toolbox);
         chunk_max_range += chunk_size;
     }
-    while (toolbox->b)
-    {
-        pa(toolbox);
-        // ft_printf("current value stack a: %i\n", toolbox->a->num);
-    }
+    push_b_to_a(toolbox);
+
 }
