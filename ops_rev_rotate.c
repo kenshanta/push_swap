@@ -25,7 +25,7 @@ void	rrb(t_stacks *toolbox)
 {
 	if (rev_rotate(&toolbox->b))
 	{
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 		toolbox->c_rrb += 1;
 		toolbox->total_ops += 1;
 	}
@@ -39,7 +39,7 @@ void	rrr(t_stacks *toolbox)
 	r2 = rev_rotate(&toolbox->b);
 	if (r1 || r2)
 	{
-		write(1, "rrr\n", 3);
+		write(1, "rrr\n", 4);
 		toolbox->c_rrr += 1;
 		toolbox->total_ops += 1;
 	}

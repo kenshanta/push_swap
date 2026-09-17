@@ -11,59 +11,118 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-// static  divide_into_chunks()
-// {
-
-// }
 static int	ft_sqrt(int nb)
 {
-	int	i;
+	float	sqrt;
+    float temp;
+    int i;
 
-	i = 1;
-	if (nb < 0)
-		return (0);
-	while (i < nb / i)
+	if (nb < 0 || !nb)
+        return (0);
+    i = 0;
+    sqrt = nb / 2.0f;
+    while (i < 10)
+    {
+        temp = sqrt;
+        sqrt = (temp + nb / temp) / 2.0f;
+        if(temp == sqrt)
+            break;
         i++;
-    if (i == nb / i)
-        return (i);
+    }
+   return((int)sqrt);
+}
+
+static int	get_chunk_size(int	stack_length)
+{
+	if (stack_length <= 20)
+		return (4);
+	else if (stack_length <= 100)
+		return (16);
+	else if (stack_length <= 500)
+		return (32);
 	else
-		return (0);
+		return (ft_sqrt(stack_length));
+}
+
+static int get_max_pos(t_list *b)
+{
+	int	i;
+	int	max_idx;
+	int	max_pos;
+	t_list	*head;
+
+	head = b;
+	max_idx = b->index;
+	max_pos = 0;
+	i = 0;
+	while (1)
+	{
+		if (b->index > max_idx)
+		{
+			max_idx = b->index;
+			max_pos = i;
+		}
+		b = b->next;
+		i++;
+		if (b == head)
+			break;
+	}
+	return(max_pos);
+}
+
+static void push_b_to_a(t_stacks *toolbox)
+{
+	int	max_pos;
+	int	size;
+
+	while (toolbox->b)
+	{
+		max_pos = get_max_pos(toolbox->b);
+		size = stack_length(toolbox->b);
+		if (max_pos <= size /2)
+		{
+			while (max_pos--)
+				rb(toolbox);
+		}
+		else
+		{
+			size = size - max_pos;
+			while (size--)
+				rrb(toolbox);
+		}
+		pa(toolbox);
+	}
 }
 
 void    medium_sort(t_stacks *toolbox)
 {
-    int stack_len;
     int chunk_size;
     int chunk_max_range;
-    int count;
+	int counter;
+	int total_length;
 
-    stack_len = 0;
-    if (toolbox->a)
-        stack_len = stack_length(toolbox->a);
-    chunk_size = ft_sqrt(stack_len);
-    chunk_max_range = ft_sqrt(stack_len);
-    while (stack_len > 0)
+	total_length = stack_length(toolbox->a);
+	chunk_size = get_chunk_size(total_length);
+    chunk_max_range = chunk_size;
+	counter = 0;
+    while (toolbox->a)
     {
-        count = chunk_size;
-        while(count)
-        {
-            if(toolbox->a->index <= chunk_max_range)
-            {
-                pb(toolbox);
-                if (toolbox->a->index <= chunk_max_range / 2)
-                    rb(toolbox);                
-                count--;
-            }
-            else
-                ra(toolbox);
-        }
-        ft_printf("current b index: %i\n", toolbox->b->index);
-        chunk_max_range += chunk_size;
-        stack_len -= chunk_size;
+		if(toolbox->a->index < chunk_max_range)
+		{
+			pb(toolbox);
+			if (toolbox->b->index < chunk_max_range - (chunk_size / 2))
+				rb(toolbox);
+			counter++;
+		}
+		else
+			ra(toolbox);
+		if (counter == chunk_size)
+		{
+        	chunk_max_range += chunk_size;
+			counter = 0;
+			if (total_length - (chunk_max_range - chunk_size) < chunk_size)
+				chunk_max_range = total_length;
+		}
     }
-    while (toolbox->b)
-    {
-        pa(toolbox);
-        ft_printf("current value stack a: %i\n", toolbox->a->num);
-    }
+    push_b_to_a(toolbox);
 }

@@ -102,21 +102,21 @@ This whole project was created with collaborative effort of jziental, skovlekj w
 
 ```sh
 #EDGE CASES
-./push_swap 3 2 1	//naive check
-./push_swap				//nothing passed
-./push_swap --bench --mistake //wrong argument
-./push_swap "-3 -2 -1" 5 7 -513 "213 "	//taking arguments with and without ""
-./push_swap --bench 1 2, 3 //wrong argument - only valid separator is whitespace " "
-./push_swap 1 2 3		//already sorted
-./push_swap 1 2 -3444555666 // < INT_MIN
-./push_swap 1 2 3444555666 //  > INT_MAX
+./push_swap 3 2 1	#naive check
+./push_swap				#nothing passed
+./push_swap --bench --mistake #wrong argument
+./push_swap "-3 -2 -1" 5 7 -513 "213 " | ./checker_linux "-3 -2 -1" 5 7 -513 "213 " #taking arguments with and without ""
+./push_swap --bench 1 2, 3 #wrong argument - only valid separator is whitespace " "
+./push_swap 1 2 3		#already sorted
+./push_swap 1 2 -3444555666 # < INT_MIN
+./push_swap 1 2 3444555666 #  > INT_MAX
 #PERFORMANCE
-shuf -i 0-9999 -n 100 > args.txt ; ./push_swap $(cat args.txt) | wc -l //num of operations for 100 random integers from 0 to 9999
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | wc -l //num of operations for 500 random integers from 0 to 9999
+shuf -i 0-9999 -n 100 > args.txt ; ./push_swap $(cat args.txt) | wc -l #num of operations for 100 random integers from 0 to 9999
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | wc -l #num of operations for 500 random integers from 0 to 9999
 #CHECKER VERIFICATION
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for ADAPTIVE
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --simple $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for SIMPLE
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --medium $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for MEDIUM
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --complex $(cat args.txt) | ./checker_linux $(cat args.txt) //check if operations are correct for COMPLEX
-shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench $(cat args.txt) 2>bench.txt| ./checker_linux $(cat args.txt) //check if benchmark output is stderr
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt) | ./checker_linux $(cat args.txt) #check if operations are correct for ADAPTIVE
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --simple $(cat args.txt) | ./checker_linux $(cat args.txt) #check if operations are correct for SIMPLE
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --medium $(cat args.txt) | ./checker_linux $(cat args.txt) #check if operations are correct for MEDIUM
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --complex $(cat args.txt) | ./checker_linux $(cat args.txt) #check if operations are correct for COMPLEX
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench $(cat args.txt) 2>bench.txt| ./checker_linux $(cat args.txt) #check if benchmark output is stderr
 ```

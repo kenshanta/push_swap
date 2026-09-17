@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 14:20:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 17:32:44 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:40:24 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static void which_startegy (t_stacks *toolbox)
 }
 static void print_strategy (t_stacks *toolbox)
 {
-	if (toolbox->strategy_index == 0)
+	if (toolbox->strategy_flag == STRATEGY_ADAPTIVE)
 	{
 		ft_putstr_fd("Adaptive / ", 2);
 		which_startegy(toolbox);
 	}
-	else if (toolbox->strategy_index == STRATEGY_SIMPLE)
+	else if (toolbox->strategy_flag == STRATEGY_SIMPLE)
 		ft_putstr_fd("Simple / O(n²)", 2);
-	else if (toolbox->strategy_index == STRATEGY_MEDIUM)
+	else if (toolbox->strategy_flag == STRATEGY_MEDIUM)
 		ft_putstr_fd("Medium / O(n√n)", 2);
-	else if (toolbox->strategy_index == STRATEGY_COMPLEX)
+	else if (toolbox->strategy_flag == STRATEGY_COMPLEX)
 		ft_putstr_fd("Complex / O(nlog(n))", 2);
 }
 

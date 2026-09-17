@@ -17,6 +17,9 @@ void	ft_exit(t_stacks **lst, int say_error)
 	if (lst)
 		ft_toolsfree(lst);
 	if (say_error)
+	{
 		write(2, "Error\n", 6);
-	exit(1);
+		exit(1);
+	}
+	exit(0);
 }

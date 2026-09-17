@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 11:39:35 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 17:45:18 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:28:49 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int	check_flags(char **av, t_stacks *stacks)
 		if (!ft_strcmp(av[i], "--bench"))
 			stacks->is_benchmark = 1;
 		else if (!ft_strcmp(av[i], "--simple"))
-			stacks->strategy_index = STRATEGY_SIMPLE;
+			stacks->strategy_flag = STRATEGY_SIMPLE;
 		else if (!ft_strcmp(av[i], "--medium"))
-			stacks->strategy_index = STRATEGY_MEDIUM;
+			stacks->strategy_flag = STRATEGY_MEDIUM;
 		else if (!ft_strcmp(av[i], "--complex"))
-			stacks->strategy_index = STRATEGY_COMPLEX;
+			stacks->strategy_flag = STRATEGY_COMPLEX;
 		else if (!ft_strcmp(av[i], "--adaptive"))
-			stacks->strategy_index = 0;
+			stacks->strategy_flag = STRATEGY_ADAPTIVE;
 		else
 			return(i);
 		i++;
@@ -102,22 +102,8 @@ t_stacks	*stacks_init()
 	stacks = malloc(sizeof(t_stacks));
 	if (!stacks)
 		ft_exit(&stacks, 1);
-	stacks->a = NULL;
-	stacks->b = NULL;
-	stacks->strategy_index = STRATEGY_ADAPTIVE;
-	stacks->is_benchmark = 0;
+	*stacks = (t_stacks){0};
+	stacks->strategy_flag = STRATEGY_ADAPTIVE;
 	stacks->chosen_strategy = STRATEGY_ADAPTIVE;
-	stacks->total_ops = 0;
-	stacks->c_pa = 0;
-	stacks->c_pb = 0;
-	stacks->c_sa = 0;
-	stacks->c_sb = 0;
-	stacks->c_ss = 0;
-	stacks->c_ra = 0;
-	stacks->c_rb = 0;
-	stacks->c_rr = 0;
-	stacks->c_rra = 0;
-	stacks->c_rrb = 0;
-	stacks->c_rrr = 0;
 	return (stacks);
 }

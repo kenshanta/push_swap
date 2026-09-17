@@ -16,3 +16,6 @@ checker_linux
 
 #json
 *.json
+
+#bin
+test.c

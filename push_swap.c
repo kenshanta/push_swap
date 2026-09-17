@@ -6,18 +6,15 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 17:29:54 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:39:28 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	chose_strategy(t_stacks **toolbox)
+static void	adapt_strategy(t_stacks **toolbox)
 {
 	float	disorder;
 
-	if ((*toolbox)->strategy_index != STRATEGY_ADAPTIVE)
-		return ;
 	if (!(*toolbox)->pairs)
 		disorder = 0;
 	else
@@ -25,22 +22,28 @@ static void	chose_strategy(t_stacks **toolbox)
 	if (!(*toolbox)->mistakes)
 		return (ft_exit(toolbox, 0));
 	else if (disorder < 0.2)
-		(*toolbox)->strategy_index = STRATEGY_SIMPLE;
+		(*toolbox)->chosen_strategy = STRATEGY_SIMPLE;
 	else if (disorder < 0.5)
-		(*toolbox)->strategy_index = STRATEGY_MEDIUM;
+		(*toolbox)->chosen_strategy = STRATEGY_MEDIUM;
 	else
-		(*toolbox)->strategy_index = STRATEGY_COMPLEX;
+		(*toolbox)->chosen_strategy = STRATEGY_COMPLEX;
 }
-
+static int is_adaptive(t_stacks **toolbox)
+{
+	if ((*toolbox)->strategy_flag == STRATEGY_ADAPTIVE)
+		return 1;
+	return 0;
+}
 void	push_swap(t_stacks **toolbox)
 {
-	chose_strategy(toolbox);
-	if ((*toolbox)->strategy_index == STRATEGY_SIMPLE)
+	if (!is_adaptive(toolbox))
+		(*toolbox)->chosen_strategy = (*toolbox)->strategy_flag;
+	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE)
 		simple_sort(*toolbox);
-	else if ((*toolbox)->strategy_index == STRATEGY_MEDIUM)
+	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM)
 		medium_sort(*toolbox);
-	else if ((*toolbox)->strategy_index == STRATEGY_COMPLEX)
-		simple_sort(*toolbox);
+	else if ((*toolbox)->chosen_strategy == STRATEGY_COMPLEX)
+		complex_sort(*toolbox);
 	else
 		simple_sort(*toolbox);
 }
@@ -53,6 +56,8 @@ int	main(int ac, char **av)
 	check_write_args(ac, av, toolbox);
 	assign_indexes(&toolbox);
 	compute_disorder(&toolbox, toolbox->a);
+	if (is_adaptive(&toolbox))
+		adapt_strategy(&toolbox);
 	push_swap(&toolbox);
 	if (toolbox->is_benchmark)
 		benchmark(&toolbox);
