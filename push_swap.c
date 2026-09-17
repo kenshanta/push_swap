@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: skovlekj <skovlekj@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/14 19:39:28 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/17 23:28:09 by skovlekj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 static void	adapt_strategy(t_stacks **toolbox)
 {
 	float	disorder;
@@ -41,7 +42,7 @@ void	push_swap(t_stacks **toolbox)
 	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE)
 		simple_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM)
-		simple_sort(*toolbox);
+		medium_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_COMPLEX)
 		complex_sort(*toolbox);
 	else
