@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 17:12:07 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 17:10:43 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 17:00:21 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	*ft_selection(int *set, int length)
 
 int	stack_length(t_list *stack)
 {
-	t_list *current;
-	int	count;
+	t_list	*current;
+	int		count;
 
 	if (!stack)
 		return (0);
