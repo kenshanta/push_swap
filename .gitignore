@@ -19,3 +19,5 @@ checker_linux
 
 #bin
 test.c
+
+build/*
