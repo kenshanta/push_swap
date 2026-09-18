@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 15:44:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/05 16:04:05 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 16:54:33 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!s)
-	return ;
+		return ;
 	while (s[i])
 		i++;
 	write(fd, s, i);
@@ -24,8 +26,10 @@ void	ft_putstr_fd(char *s, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char c;
-	long num = n;
+	char	c;
+	long	num;
+
+	num = n;
 	if (num < 0)
 	{
 		write(fd, "-", 1);
