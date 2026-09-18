@@ -29,12 +29,14 @@ static void	adapt_strategy(t_stacks **toolbox)
 	else
 		(*toolbox)->chosen_strategy = STRATEGY_COMPLEX;
 }
+
 static int is_adaptive(t_stacks **toolbox)
 {
 	if ((*toolbox)->strategy_flag == STRATEGY_ADAPTIVE)
 		return 1;
 	return 0;
 }
+
 void	push_swap(t_stacks **toolbox)
 {
 	if (!is_adaptive(toolbox))
@@ -64,4 +66,3 @@ int	main(int ac, char **av)
 		benchmark(&toolbox);
 	return (ft_toolsfree(&toolbox), 0);
 }
-

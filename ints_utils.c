@@ -88,25 +88,3 @@ int	has_whitespaces(char *nptr)
 	}
 	return (0);
 }
-
-//#include <stdlib.h>
-//#include <stdio.h>
-//#include <limits.h>
-
-//int	main(void)
-//{
-//	int i = 0;
-//	printf("min=%d, max=%d\n", INT_MIN, INT_MAX);
-//	char *s[] = {"   +2147483647", "2d", "\0", "  -  123", "-2147483648",
-//				"002", "-2147483648", "0 02", "   --00002",
-// "121232", "   -02", "","    ", "--123", "abc", "999dx2", "003458",
-// "999888777666555","-+48","-","-3147000000", NULL};
-//	while (s[i])
-//	{
-//		ft_printf("ft_atoi(%s) = %d\n", s[i], ft_atoi(s[i]));
-//		printf("   atoi(%s) = %d\n", s[i], atoi(s[i]));
-//		i++;
-//	}
-//	printf("int: %ld\nlong:%ld\nlong long%ld", sizeof(int), sizeof(long),sizeof(long long));
-//	return (0);
-//}
