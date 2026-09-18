@@ -14,26 +14,26 @@
 
 static int	ft_sqrt(int nb)
 {
-	float	sqrt;
-    float temp;
-    int i;
+	float		sqrt;
+	float		temp;
+	int			i;
 
 	if (nb < 0 || !nb)
-        return (0);
-    i = 0;
-    sqrt = nb / 2.0f;
-    while (i < 10)
-    {
-        temp = sqrt;
-        sqrt = (temp + nb / temp) / 2.0f;
-        if(temp == sqrt)
-            break;
-        i++;
-    }
-   return((int)sqrt);
+		return (0);
+	i = 0;
+	sqrt = nb / 2.0f;
+	while (i < 10)
+	{
+		temp = sqrt;
+		sqrt = (temp + nb / temp) / 2.0f;
+		if (temp == sqrt)
+			break ;
+		i++;
+	}
+	return ((int)sqrt);
 }
 
-static int	get_chunk_size(int	stack_length)
+static int	get_chunk_size(int stack_length)
 {
 	if (stack_length <= 20)
 		return (4);
@@ -45,11 +45,11 @@ static int	get_chunk_size(int	stack_length)
 		return (ft_sqrt(stack_length));
 }
 
-static int get_max_pos(t_list *b)
+static int	get_max_pos(t_list *b)
 {
-	int	i;
-	int	max_idx;
-	int	max_pos;
+	int		i;
+	int		max_idx;
+	int		max_pos;
 	t_list	*head;
 
 	head = b;
@@ -66,12 +66,12 @@ static int get_max_pos(t_list *b)
 		b = b->next;
 		i++;
 		if (b == head)
-			break;
+			break ;
 	}
-	return(max_pos);
+	return (max_pos);
 }
 
-static void push_b_to_a(t_stacks *toolbox)
+static void	push_b_to_a(t_stacks *toolbox)
 {
 	int	max_pos;
 	int	size;
@@ -80,7 +80,7 @@ static void push_b_to_a(t_stacks *toolbox)
 	{
 		max_pos = get_max_pos(toolbox->b);
 		size = stack_length(toolbox->b);
-		if (max_pos <= size /2)
+		if (max_pos <= size / 2)
 		{
 			while (max_pos--)
 				rb(toolbox);
@@ -95,24 +95,24 @@ static void push_b_to_a(t_stacks *toolbox)
 	}
 }
 
-void    medium_sort(t_stacks *toolbox)
+void	medium_sort(t_stacks *toolbox)
 {
-    int chunk_size;
-    int chunk_max_range;
+	int	chunk_size;
+	int	chunk_max_range;
 
-    chunk_size = get_chunk_size(stack_length(toolbox->a));
-    chunk_max_range = chunk_size;
-    while (toolbox->a)
-    {
-		if(toolbox->a->index < chunk_max_range)
+	chunk_size = get_chunk_size(stack_length(toolbox->a));
+	chunk_max_range = chunk_size;
+	while (toolbox->a)
+	{
+		if (toolbox->a->index < chunk_max_range)
 		{
 			pb(toolbox);
 			if (toolbox->b->index < chunk_max_range - (chunk_size / 2))
 				rb(toolbox);
-        	chunk_max_range++;
+			chunk_max_range++;
 		}
 		else
 			ra(toolbox);
-    }
-    push_b_to_a(toolbox);
+	}
+	push_b_to_a(toolbox);
 }
