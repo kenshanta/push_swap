@@ -34,36 +34,69 @@ These are:
 
 ### Indexing
 
-Selection sort used as a helper to give every given integer a target index in sorted stack
+Selection sort used as a helper to give every given integer a target index in sorted stack.
+Every node of linked list consists of value (integer to be sorted) and that index (target position in stack A)
 
-### Simple startegy
+### Simple strategy
 
-Selection sort which compares current top integer with minimum found by indexing
+Selection sort which compares current top integer with minimum found by indexing. First we rotate or reverse rotate (depending what requires less operations) until it's on top and then we push it to b. Stack b will be sorted in descending order. After pushing everything to stack A we'll get integers sorted in ascending order.
+
+#### Complexity
+
+The algorithm finds and moves one smallest index during each of `n` passes. Each pass can scan or rotate up to `n` elements, so the total number of operations is O(n<sup>2</sup>).
+
+Sources:\
+[Selection sort geeks4geeks](https://www.geeksforgeeks.org/dsa/selection-sort-algorithm-2/)
 
 ### Medium strategy
 
+The medium strategy uses a chunk-based sorting algorithm. The indexed values are divided into ranges(chunks). Elements belonging to the current chunk are pushed from stack `a` to stack `b` - other are rotated inside a. Smaller indexed elements are rotated inside `b` so that the values remain positioned efficiently.
+
+After all elements have been moved to stack `b`, the algorithm repeatedly finds the largest index in `b`, rotates it to the top using the shortest direction, and pushes it back to `a`. This produces stack `a` in ascending order.
+
+#### Complexity
+
+The values are processed in chunks of approximately √n elements, so there are about √n chunks. Each element is processed through a bounded number of chunk operations, giving an approximate total complexity of O(n√n).
+
+
 ### Complex strategy
 
-Radix sort implemented using bitwise operation and indexing
+Radix sort implemented using bitwise operation and indexing. The algorithm scans all `n` elements once **for each bit** starting from least significant [*LSD*] with `>>` and `&` bitwise operations.\
+If that bit is equal to `0` they are pushed to b. After that those elements are pushed back to a.Everything is repeated until every significant bit is compared.
 
-Sources:
-[Bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operations_in_C)
-[How radix sorting works video] (https://www.youtube.com/watch?v=mVRHvZF8xtg&pp=ygUKcmFkaXggc29ydA%3D%3D)
+#### Complexity
+Before sorting, every value is replaced by an index between `0` and `n - 1`, so the original 32-bit integer representation is no longer used. Representing these indexes requires approximately `log₂(n)` bits.
+The algorithm processes every element once for each bit in its index (`n` operations). So the total complexity is O(n log n).
+
+Sources:\
+[Bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operations_in_C)\
+[How radix sorting works video](https://www.youtube.com/watch?v=mVRHvZF8xtg&pp=ygUKcmFkaXggc29ydA%3D%3D)\
 [How radix sorting works wiki](https://en.wikipedia.org/wiki/Radix_sort)
 
-### Adaptive startegy
+### Adaptive strategy
 
-One of the sorting strategies above is chosen based on disorder computed in
+If no flags forcing startegy were passed, one of the sorting strategies above is chosen based on disorder computed in `computed_disorder.c`\
+There are strict rules from the subject when particular strategies have to be chosen. It was shown in the table below:
+
+| Strategy | Disorder min | Disorder max |
+|----------|--------------|--------------|
+| Simple   | >0%          | <20%         |
+| Medium   | 20%          | <50%         |
+| Complex  | 50%          | 100%         |
+
+#### Complexity
+
+The algorithm first compares each pair of elements to calculate disorder, which takes O(n<sup>2</sup>) time. It then runs the selected strategy, so adaptive sorting keeps that strategy's complexity in addition to the disorder calculation.
 
 ## Project goal
 
-- Create a program named `push_swap.a`
+- Create a program named `push_swap`
 - Program which will print a set of restricted operations to sort given integer numbers
 - Respect the 42 Norminette rules and The Norm V4
 
-# Intructions
+## Intructions
 
-A standard build produces the executable file `push_swap.a`:
+A standard build produces the executable file `push_swap`:
 
 ```sh
 make
@@ -112,7 +145,10 @@ To be accepted by the 42 evaluation system, the project must:
 
 ## Notes
 
-This whole project was created with collaborative effort of jziental, skovlekj with AI and other 42 peers assistance. Authors checked it thoroughly to ensure it matches the project purpose and the 42 Push_swap Subject requirements.
+This whole project was created with collaborative effort of jziental, skovlekj with AI and other 42 peers assistance. \
+AI was used to clarify algorithmic complexity, improve README explanations,
+suggest testing methods, and help investigate debugging questions. All generated
+suggestions were reviewed, tested, and adapted by both learners.
 
 ### Authors tests
 
