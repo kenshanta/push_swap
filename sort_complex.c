@@ -40,10 +40,10 @@ void	complex_sort(t_stacks *toolbox)
 		length = stack_length(toolbox->a);
 		while (length)
 		{
-			if ((toolbox->a->num << i & 1) == 0)
-				ra(toolbox);
-			else
+			if ((toolbox->a->index >> i & 1) == 0)
 				pb(toolbox);
+			else
+				ra(toolbox);
 			length--;
 		}
 		while (toolbox->b)
@@ -51,4 +51,3 @@ void	complex_sort(t_stacks *toolbox)
 		i++;
 	}
 }
-
