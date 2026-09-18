@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 static void	adapt_strategy(t_stacks **toolbox)
 {
 	float	disorder;
@@ -28,12 +29,14 @@ static void	adapt_strategy(t_stacks **toolbox)
 	else
 		(*toolbox)->chosen_strategy = STRATEGY_COMPLEX;
 }
+
 static int is_adaptive(t_stacks **toolbox)
 {
 	if ((*toolbox)->strategy_flag == STRATEGY_ADAPTIVE)
 		return 1;
 	return 0;
 }
+
 void	push_swap(t_stacks **toolbox)
 {
 	if (!is_adaptive(toolbox))
@@ -41,7 +44,7 @@ void	push_swap(t_stacks **toolbox)
 	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE)
 		simple_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM)
-		simple_sort(*toolbox);
+		medium_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_COMPLEX)
 		complex_sort(*toolbox);
 	else
@@ -63,4 +66,3 @@ int	main(int ac, char **av)
 		benchmark(&toolbox);
 	return (ft_toolsfree(&toolbox), 0);
 }
-
