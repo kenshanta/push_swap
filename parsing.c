@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/12 11:39:35 by jziental          #+#    #+#             */
-/*   Updated: 2026/18/14 03:49:12 by skovlekj         ###   ########.fr       */
+/*   Updated: 2026/09/18 17:18:54 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	free_split(char **split)
 		free(split[i++]);
 	free(split);
 }
+
 void	take_ints(char **str, t_stacks *stacks)
 {
 	long long	num;
@@ -67,7 +68,7 @@ int	check_flags(char **av, t_stacks *stacks)
 		else if (!ft_strcmp(av[i], "--adaptive"))
 			stacks->strategy_flag = STRATEGY_ADAPTIVE;
 		else
-			return(i);
+			return (i);
 		i++;
 	}
 	return (i);
@@ -78,7 +79,7 @@ void	check_write_args(int ac, char **av, t_stacks *stacks)
 	int	i;
 
 	i = 0;
-	if (ac <2)
+	if (ac < 2)
 	{
 		ft_toolsfree(&stacks);
 		exit(0);
@@ -88,16 +89,16 @@ void	check_write_args(int ac, char **av, t_stacks *stacks)
 	else if (ac >= 2)
 	{
 		i = check_flags(av, stacks);
-		if(av[i])
+		if (av[i])
 			take_ints(av + i, stacks);
 		else
 			ft_exit(&stacks, 1);
 	}
 }
 
-t_stacks	*stacks_init()
+t_stacks	*stacks_init(void)
 {
-	t_stacks *stacks;
+	t_stacks	*stacks;
 
 	stacks = malloc(sizeof(t_stacks));
 	if (!stacks)
