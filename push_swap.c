@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 18:18:30 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 19:24:09 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ static int	is_adaptive(t_stacks **toolbox)
 
 void	push_swap(t_stacks **toolbox)
 {
+	int	len;
+
+	len = stack_length((*toolbox)->a);
 	if (!is_adaptive(toolbox))
 		(*toolbox)->chosen_strategy = (*toolbox)->strategy_flag;
-	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE)
+	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE || len <= 5)
 		simple_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM)
 		medium_sort(*toolbox);
