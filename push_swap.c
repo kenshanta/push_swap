@@ -30,11 +30,11 @@ static void	adapt_strategy(t_stacks **toolbox)
 		(*toolbox)->chosen_strategy = STRATEGY_COMPLEX;
 }
 
-static int is_adaptive(t_stacks **toolbox)
+static int	is_adaptive(t_stacks **toolbox)
 {
 	if ((*toolbox)->strategy_flag == STRATEGY_ADAPTIVE)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
 void	push_swap(t_stacks **toolbox)
