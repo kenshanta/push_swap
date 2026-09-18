@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// Sorts the array in ascending order and returns the same pointer.
+
 static int	*ft_selection(int *set, int length)
 {
 	int	i;
@@ -37,7 +37,7 @@ static int	*ft_selection(int *set, int length)
 	}
 	return (set);
 }
-//counts number of nodes in circular list
+
 int	stack_length(t_list *stack)
 {
 	t_list *current;
@@ -54,7 +54,7 @@ int	stack_length(t_list *stack)
 	}
 	return (count);
 }
-//make copies values from stack to array set
+
 static int	*make_set(t_stacks **toolbox)
 {
 	t_list	*current;
@@ -77,7 +77,7 @@ static int	*make_set(t_stacks **toolbox)
 	}
 	return (set);
 }
-//assign indexes based on comparing nums in sorted array and stack a
+
 void	assign_indexes(t_stacks **toolbox)
 {
 	t_list	*current;
@@ -99,22 +99,3 @@ void	assign_indexes(t_stacks **toolbox)
 	}
 	free(set);
 }
-
-
-//#include <stdio.h>
-
-//int	main()
-//{
-//	int	set[] = {3, 2, 1, 11, 34, 123, 0, -7};
-//	int	len = sizeof(set) / sizeof(set[0]);
-//	int	i = 0;
-
-//	ft_selection(set, len);
-//	while (i < len)
-//	{
-//		printf("%d ", set[i]);
-//		i++;
-//	}
-
-//	return (0);
-//}
