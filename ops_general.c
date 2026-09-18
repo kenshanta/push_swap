@@ -35,7 +35,7 @@ int	rev_rotate(t_list **stack)
 int	swap(t_list **stack)
 {
 	int	temp_num;
-	int temp_index;
+	int	temp_index;
 
 	if (stack && (*stack) && (*stack)->next != (*stack))
 	{
@@ -49,25 +49,26 @@ int	swap(t_list **stack)
 	}
 	return (0);
 }
+
 int	push(t_list **source, t_list **dest)
 {
 	t_list	*node;
 
 	if (source && *source)
+	{
+		node = *source;
+		if (node->next == node)
+			*source = NULL;
+		else
 		{
-			node = *source;
-			if (node->next == node)
-				*source = NULL;
-			else
-			{
-				node->prev->next = node->next;
-				node->next->prev = node->prev;
-				*source = node->next;
-			}
-			node->next = node;
-			node->prev = node;
-			ft_lstadd_front(dest, node);
-			return (1);
+			node->prev->next = node->next;
+			node->next->prev = node->prev;
+			*source = node->next;
 		}
-		return (0);
+		node->next = node;
+		node->prev = node;
+		ft_lstadd_front(dest, node);
+		return (1);
+	}
+	return (0);
 }
