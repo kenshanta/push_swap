@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skovlekj <skovlekj@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/17 23:28:09 by skovlekj         ###   ########.fr       */
+/*   Updated: 2026/09/18 18:18:30 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	main(int ac, char **av)
 
 	toolbox = stacks_init();
 	check_write_args(ac, av, toolbox);
+	if (stack_length(toolbox->a) == 1)
+		ft_exit(&toolbox, 0);
 	assign_indexes(&toolbox);
 	compute_disorder(&toolbox, toolbox->a);
 	if (is_adaptive(&toolbox))
