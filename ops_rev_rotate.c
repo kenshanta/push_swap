@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rev_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skovlekj <skovlekj@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 16:19:19 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/17 23:27:09 by skovlekj         ###   ########.fr       */
+/*   Updated: 2026/09/18 17:06:35 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	rra(t_stacks *toolbox)
 		toolbox->total_ops += 1;
 	}
 }
+
 void	rrb(t_stacks *toolbox)
 {
 	if (rev_rotate(&toolbox->b))
@@ -30,6 +31,7 @@ void	rrb(t_stacks *toolbox)
 		toolbox->total_ops += 1;
 	}
 }
+
 void	rrr(t_stacks *toolbox)
 {
 	int	r1;
