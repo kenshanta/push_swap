@@ -6,12 +6,13 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 14:20:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/14 19:40:24 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 16:49:16 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-static void which_startegy (t_stacks *toolbox)
+
+static void	which_startegy(t_stacks *toolbox)
 {
 	if (toolbox->chosen_strategy == STRATEGY_SIMPLE)
 		ft_putstr_fd("O(n²)", 2);
@@ -20,7 +21,8 @@ static void which_startegy (t_stacks *toolbox)
 	if (toolbox->chosen_strategy == STRATEGY_COMPLEX)
 		ft_putstr_fd("O(nlog(n))", 2);
 }
-static void print_strategy (t_stacks *toolbox)
+
+static void	print_strategy(t_stacks *toolbox)
 {
 	if (toolbox->strategy_flag == STRATEGY_ADAPTIVE)
 	{
@@ -35,11 +37,12 @@ static void print_strategy (t_stacks *toolbox)
 		ft_putstr_fd("Complex / O(nlog(n))", 2);
 }
 
-static void print_disorder_bench(t_stacks *toolbox)
+static void	print_disorder_bench(t_stacks *toolbox)
 {
-	int disorder;
-	int whole;
-	int frac;
+	int	disorder;
+	int	whole;
+	int	frac;
+
 	if (!toolbox || toolbox->pairs == 0)
 	{
 		ft_putstr_fd("[bench] disorder:  0.00%\n", 2);
@@ -56,7 +59,8 @@ static void print_disorder_bench(t_stacks *toolbox)
 	ft_putnbr_fd(frac, 2);
 	ft_putstr_fd("%\n", 2);
 }
-static void print_operations_counts (t_stacks *toolbox)
+
+static void	print_operations_counts(t_stacks *toolbox)
 {
 	ft_putstr_fd("\n[bench] total_ops: ", 2);
 	ft_putnbr_fd(toolbox->total_ops, 2);
