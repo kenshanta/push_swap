@@ -91,21 +91,3 @@ void	benchmark(t_stacks **toolbox)
 	print_strategy(*toolbox);
 	print_operations_counts(*toolbox);
 }
-//int main()
-//{
-//	t_stacks *toolbox;
-//	t_list	*node;
-//	int		nums[] = {5, 3, 7, 6, -5, 0};
-//	int		i = 0;
-
-//	toolbox = stacks_init();
-//	while (nums[i])
-//	{
-//		node = ft_lstnew(nums[i++]);
-//		ft_lstadd_back(&toolbox->a, node);
-//	}
-//	toolbox->chosen_strategy = 2;
-//	benchmark(&toolbox);
-//	ft_toolsfree(&toolbox);
-//	return (0);
-//}
