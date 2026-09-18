@@ -6,14 +6,14 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 19:07:43 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/13 17:10:22 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 16:50:57 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void compute_disorder(t_stacks **toolbox,  t_list *a)
+void	compute_disorder(t_stacks **toolbox, t_list *a)
 {
 	t_list	*i;
 	t_list	*j;
@@ -34,21 +34,3 @@ void compute_disorder(t_stacks **toolbox,  t_list *a)
 		i = i->next;
 	}
 }
-//int main()
-//{
-//	t_stacks *toolbox;
-//	t_list	*node;
-//	int		nums[] = {5, 3, 7, 6, -5, 0};
-//	int		i = 0;
-
-//	toolbox = stacks_init();
-//	while (nums[i])
-//	{
-//		node = ft_lstnew(nums[i++]);
-//		ft_lstadd_back(&toolbox->a, node);
-//	}
-//	compute_disorder(&toolbox, toolbox->a);
-//	printf("%d/%d", toolbox->mistakes, toolbox->pairs);
-//	ft_toolsfree(&toolbox);
-//	return (0);
-//}
