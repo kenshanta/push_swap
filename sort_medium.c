@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   sort_medium.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skovlekj <skovlekj@student.42warsaw.pl>    #+#  +:+       +#+        */
+/*   By: skovlekj <skovlekj@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-09-11 19:32:15 by skovlekj          #+#    #+#             */
-/*   Updated: 2026-09-11 19:32:15 by skovlekj         ###   ########.fr       */
+/*   Created: 2026/09/11 19:32:15 by skovlekj          #+#    #+#             */
+/*   Updated: 2026/09/17 23:35:08 by skovlekj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	ft_sqrt(int nb)
@@ -74,8 +75,6 @@ static void push_b_to_a(t_stacks *toolbox)
 {
 	int	max_pos;
 	int	size;
-	// ---- testing putposes ----
-	// t_list	*head;
 
 	while (toolbox->b)
 	{
@@ -94,15 +93,6 @@ static void push_b_to_a(t_stacks *toolbox)
 		}
 		pa(toolbox);
 	}
-	//--- manual tester ---
-	// head = toolbox->a;
-	// while (toolbox->a)
-    // {
-    //     ft_printf("current value stack a: %i\n", toolbox->a->num);
-	// 	toolbox->a = toolbox->a->next;
-	// 	if(toolbox->a == head)
-	// 		break;
-    // }
 }
 
 void    medium_sort(t_stacks *toolbox)
@@ -119,11 +109,10 @@ void    medium_sort(t_stacks *toolbox)
 			pb(toolbox);
 			if (toolbox->b->index < chunk_max_range - (chunk_size / 2))
 				rb(toolbox);
+        	chunk_max_range++;
 		}
 		else
 			ra(toolbox);
-        chunk_max_range += chunk_size;
     }
     push_b_to_a(toolbox);
-
 }
