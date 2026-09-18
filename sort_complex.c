@@ -31,7 +31,7 @@ void	complex_sort(t_stacks *toolbox)
 {
 	int	i;
 	int	num_of_bits;
-	int length;
+	int	length;
 
 	i = 0;
 	num_of_bits = radix_num(toolbox);
