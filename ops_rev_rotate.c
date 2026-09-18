@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 16:19:19 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 17:06:35 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/18 17:13:46 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	rrr(t_stacks *toolbox)
 	r2 = rev_rotate(&toolbox->b);
 	if (r1 || r2)
 	{
-		write(1, "rrr\n", 3);
+		write(1, "rrr\n", 4);
 		toolbox->c_rrr += 1;
 		toolbox->total_ops += 1;
 	}
