@@ -90,7 +90,7 @@ static void	three_nums_sort(t_stacks *toolbox, int min_index)
 		ra(toolbox);
 }
 
-void	five_nums_sort(t_stacks *toolbox, int len)
+static void	five_nums_sort(t_stacks *toolbox, int len)
 {
 	int	min_index;
 	int	moves_to_top;
