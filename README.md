@@ -94,6 +94,14 @@ The algorithm first compares each pair of elements to calculate disorder, which 
 - Program which will print a set of restricted operations to sort given integer numbers
 - Respect the 42 Norminette rules and The Norm V4
 
+## Collaboration
+
+| Contributor | Responsibilities |
+|-------------|------------------|
+| skovlekj | Project setup, argument parsing, input validation, sorting strategies (medium), and program and git control flow. |
+| jziental | Indexing, disorder calculation, sorting strategies (simplex, adaptive), benchmarking, and performance testing. |
+| Both contributors | Algorithm discussions, debugging, manual testing, Norm checks, and final integration. |
+
 ## Intructions
 
 A standard build produces the executable file `push_swap`:
