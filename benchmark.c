@@ -88,6 +88,7 @@ static void	print_operations_counts(t_stacks *toolbox)
 	ft_putnbr_fd(toolbox->c_rrb, 2);
 	ft_putstr_fd(" rrr: ", 2);
 	ft_putnbr_fd(toolbox->c_rrr, 2);
+	ft_putstr_fd("\n", 2);
 }
 
 void	benchmark(t_stacks **toolbox)
