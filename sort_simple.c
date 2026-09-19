@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 18:11:17 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/19 13:59:41 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/19 14:50:33 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,10 @@ void	simple_sort(t_stacks *toolbox)
 
 	len = stack_length(toolbox->a);
 	if (len == 2)
-		sa(toolbox);
+	{
+		if (toolbox->mistakes)
+			sa(toolbox);
+	}
 	else if (len == 3)
 		three_nums_sort(toolbox, 0);
 	else if (len <= 5)

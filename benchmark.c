@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 14:20:46 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 16:49:16 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/19 14:13:42 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	which_startegy(t_stacks *toolbox)
 		ft_putstr_fd("O(n√n)", 2);
 	if (toolbox->chosen_strategy == STRATEGY_COMPLEX)
 		ft_putstr_fd("O(nlog(n))", 2);
+	else if (toolbox->chosen_strategy == STRATEGY_ADAPTIVE)
+		ft_putstr_fd("O(n²)", 2);
 }
 
 static void	print_strategy(t_stacks *toolbox)

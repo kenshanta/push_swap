@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 19:24:09 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/19 14:58:06 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	adapt_strategy(t_stacks **toolbox)
 		disorder = 0;
 	else
 		disorder = (float)(*toolbox)->mistakes / (*toolbox)->pairs;
-	if (!(*toolbox)->mistakes)
+	if (!(*toolbox)->mistakes && (*toolbox)->is_benchmark)
+		return (benchmark(toolbox), ft_exit(toolbox, 0));
+	else if (!(*toolbox)->mistakes)
 		return (ft_exit(toolbox, 0));
 	else if (disorder < 0.2)
 		(*toolbox)->chosen_strategy = STRATEGY_SIMPLE;
@@ -44,11 +46,11 @@ void	push_swap(t_stacks **toolbox)
 	len = stack_length((*toolbox)->a);
 	if (!is_adaptive(toolbox))
 		(*toolbox)->chosen_strategy = (*toolbox)->strategy_flag;
-	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE || len <= 5)
+	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE || (len <= 5 && len > 1))
 		simple_sort(*toolbox);
-	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM)
+	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM && len > 1)
 		medium_sort(*toolbox);
-	else if ((*toolbox)->chosen_strategy == STRATEGY_COMPLEX)
+	else if ((*toolbox)->chosen_strategy == STRATEGY_COMPLEX && len > 1)
 		complex_sort(*toolbox);
 	else
 		simple_sort(*toolbox);
@@ -60,8 +62,6 @@ int	main(int ac, char **av)
 
 	toolbox = stacks_init();
 	check_write_args(ac, av, toolbox);
-	if (stack_length(toolbox->a) == 1)
-		ft_exit(&toolbox, 0);
 	assign_indexes(&toolbox);
 	compute_disorder(&toolbox, toolbox->a);
 	if (is_adaptive(&toolbox))
