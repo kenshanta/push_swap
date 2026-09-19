@@ -20,6 +20,13 @@ static int	whitespaces(char *nptr)
 	return (0);
 }
 
+static int	ft_isdigit(int c)
+{
+	if ((c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}
+
 long long	ft_atoi(const char *nptr)
 {
 	int			i;
@@ -41,13 +48,6 @@ long long	ft_atoi(const char *nptr)
 	while (ft_isdigit(nptr[i]))
 		num = num * 10 + (nptr[i++] - '0');
 	return (sign * num);
-}
-
-int	ft_isdigit(int c)
-{
-	if ((c >= '0' && c <= '9'))
-		return (1);
-	return (0);
 }
 
 int	ft_onlydigits(char **str)
@@ -72,19 +72,4 @@ int	ft_onlydigits(char **str)
 		j++;
 	}
 	return (1);
-}
-
-int	has_whitespaces(char *nptr)
-{
-	int	i;
-
-	i = 0;
-	while (nptr[i])
-	{
-		if (nptr[i] == ' ' || nptr[i] == '\f' || nptr[i] == '\n'
-			|| nptr[i] == '\r' || nptr[i] == '\t' || nptr[i] == '\v')
-			return (1);
-		i++;
-	}
-	return (0);
 }
