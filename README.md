@@ -162,13 +162,13 @@ suggestions were reviewed, tested, and adapted by both learners.
 
 | No. | Test | Description / expected result |
 |-----|------|-------------|
-| 1 | `./push_swap \| wc -l` | No arguments; count the empty operation output. |
-| 2 | `./push_swap 1 \| wc -l` | One sorted integer; expected operation count is zero. |
-| 3 | `./push_swap 3 2 \| wc -l` | Sort two reversed integers and print only the operation count. |
-| 4 | `./push_swap 3 2 1 \| wc -l` | Sort three reversed integers and print only the operation count. |
-| 5 | `./push_swap 1 3 2 4 \| wc -l` | Sort four integers and print only the operation count. |
-| 6 | `./push_swap 6 1 5 2 4 3 \| wc -l` | Sort six mixed integers and print only the operation count. |
-| 7 | `for strategy in simple medium complex adaptive; do ...; done` | One runner step covering 24 sorted benchmark cases; benchmark data stays visible on stderr and stdout is counted. |
+| 1 | `./push_swap` | No arguments; expected output is empty. |
+| 2 | `./push_swap 1` | One sorted integer; expected output is empty. |
+| 3 | `./push_swap 3 2` | Sort two reversed integers. |
+| 4 | `./push_swap 3 2 1` | Sort three reversed integers. |
+| 5 | `./push_swap 1 3 2 4` | Sort four integers with one local inversion. |
+| 6 | `./push_swap 6 1 5 2 4 3` | Sort six mixed integers. |
+| 7 | `for strategy in simple medium complex adaptive; do ...; done` | One interactive runner step covering 24 sorted benchmark cases; each command is printed before execution, benchmark data stays visible on stderr, and stdout is counted. |
 | 8 | `./push_swap --bench --simple 6 1 5 2 4 3 \| wc -l` | Show simple-strategy benchmark data and count its stdout operations. |
 | 9 | `./push_swap --bench --medium 6 1 5 2 4 3 \| wc -l` | Show medium-strategy benchmark data and count its stdout operations. |
 | 10 | `./push_swap --bench --complex 6 1 5 2 4 3 \| wc -l` | Show complex-strategy benchmark data and count its stdout operations. |
@@ -196,13 +196,10 @@ suggestions were reviewed, tested, and adapted by both learners.
 | 32 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| wc -l` | Generate 500 random integers and count the produced operations. |
 | 33 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| ./checker_linux $(cat args.txt)` | Verify adaptive sorting of 500 random integers with the checker. |
 | 34 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap --bench $(cat args.txt) 2>bench.txt \| ./checker_linux $(cat args.txt)` | Verify sorting and confirm benchmark data is written to `bench.txt` on stderr. |
+| 35 | `q` at any runner prompt | Stop the complete test run without closing the terminal. |
 
-To run the tests one at a time, open WSL or another Bash-compatible terminal
-and paste only the contents of the following code block. Do not copy the
-opening and closing ``` markers or the `$` terminal prompt. The runner prints
-the next command, waits for Enter, and then executes it. Type `q` and press
-Enter at any prompt to stop the complete test run. This keeps the test
-procedure available even if only the README and project files are submitted:
+The runner prints the next command, waits for Enter, and then executes it. Type `q` and press
+Enter at any prompt to stop the complete test run.
 
 ```sh
 (
