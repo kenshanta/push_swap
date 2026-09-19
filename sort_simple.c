@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 18:11:17 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 21:53:34 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/19 13:59:41 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	find_smallest(t_stacks *toolbox, int index)
 	}
 	return (position);
 }
+
 static void	bigger_sort(t_stacks *toolbox)
 {
 	int	min_index;
@@ -88,6 +89,7 @@ static void	three_nums_sort(t_stacks *toolbox, int min_index)
 	else if (first == 2 && second == 0 && third == 1)
 		ra(toolbox);
 }
+
 void	five_nums_sort(t_stacks *toolbox, int len)
 {
 	int	min_index;
