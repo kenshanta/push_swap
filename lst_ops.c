@@ -35,7 +35,6 @@ void	ft_lstadd_front(t_list **stack, t_list *new)
 	*stack = new;
 }
 
-
 static void	ft_lstclear(t_list **lst)
 {
 	t_list	*tmp;
