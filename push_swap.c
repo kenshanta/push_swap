@@ -6,7 +6,7 @@
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 16:50:10 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/19 14:58:06 by jziental         ###   ########.fr       */
+/*   Updated: 2026/09/19 17:55:22 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ static void	adapt_strategy(t_stacks **toolbox)
 		disorder = 0;
 	else
 		disorder = (float)(*toolbox)->mistakes / (*toolbox)->pairs;
-	if (!(*toolbox)->mistakes && (*toolbox)->is_benchmark)
-		return (benchmark(toolbox), ft_exit(toolbox, 0));
-	else if (!(*toolbox)->mistakes)
-		return (ft_exit(toolbox, 0));
-	else if (disorder < 0.2)
+	if (disorder < 0.2)
 		(*toolbox)->chosen_strategy = STRATEGY_SIMPLE;
 	else if (disorder < 0.5)
 		(*toolbox)->chosen_strategy = STRATEGY_MEDIUM;
 	else
 		(*toolbox)->chosen_strategy = STRATEGY_COMPLEX;
+}
+
+static void	check_disorder(t_stacks **toolbox)
+{
+	if (!(*toolbox)->mistakes && (*toolbox)->is_benchmark)
+		return (benchmark(toolbox), ft_exit(toolbox, 0));
+	else if (!(*toolbox)->mistakes)
+		return (ft_exit(toolbox, 0));
 }
 
 static int	is_adaptive(t_stacks **toolbox)
@@ -46,6 +50,8 @@ void	push_swap(t_stacks **toolbox)
 	len = stack_length((*toolbox)->a);
 	if (!is_adaptive(toolbox))
 		(*toolbox)->chosen_strategy = (*toolbox)->strategy_flag;
+	if (len == 1)
+		return ;
 	if ((*toolbox)->chosen_strategy == STRATEGY_SIMPLE || (len <= 5 && len > 1))
 		simple_sort(*toolbox);
 	else if ((*toolbox)->chosen_strategy == STRATEGY_MEDIUM && len > 1)
@@ -64,6 +70,7 @@ int	main(int ac, char **av)
 	check_write_args(ac, av, toolbox);
 	assign_indexes(&toolbox);
 	compute_disorder(&toolbox, toolbox->a);
+	check_disorder(&toolbox);
 	if (is_adaptive(&toolbox))
 		adapt_strategy(&toolbox);
 	push_swap(&toolbox);
