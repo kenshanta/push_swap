@@ -22,7 +22,7 @@ static void	free_split(char **split)
 	free(split);
 }
 
-void	take_ints(char **str, t_stacks *stacks)
+static void	take_ints(char **str, t_stacks *stacks)
 {
 	long long	num;
 	t_list		*node;
@@ -50,7 +50,7 @@ void	take_ints(char **str, t_stacks *stacks)
 	}
 }
 
-int	check_flags(char **av, t_stacks *stacks)
+static int	check_flags(char **av, t_stacks *stacks)
 {
 	int	i;
 

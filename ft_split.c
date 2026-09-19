@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-size_t	words_count(const char *s, char c)
+static size_t	words_count(const char *s, char c)
 {
 	int		i;
 	size_t	words;
