@@ -14,8 +14,8 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRCS = benchmark.c compute_disorder.c ft_exit.c ft_printf_utils.c ft_printf.c \
-ft_split.c ft_strcmp.c ft_write_stderr.c indexing.c ints_utils.c lst_ops_sec.c \
+SRCS = benchmark.c compute_disorder.c ft_exit.c \
+ft_split.c ft_strcmp.c ft_write_utils.c indexing.c ints_utils.c lst_ops_sec.c \
 lst_ops.c ops_general.c ops_push_swap.c ops_rev_rotate.c ops_rotate.c push_swap.c \
 sort_simple.c sort_medium.c sort_complex.c parsing.c
 
