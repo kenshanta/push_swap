@@ -71,21 +71,21 @@ static void	three_nums_sort(t_stacks *toolbox, int min_index)
 	first = toolbox->a->index - min_index;
 	second = toolbox->a->next->index - min_index;
 	third = toolbox->a->prev->index - min_index;
-	if (first == 0 && second == 2 && third == 1) //021
+	if (first == 0 && second == 2 && third == 1)
 	{
 		sa(toolbox);
 		ra(toolbox);
 	}
-	else if (first == 1 && second == 2 && third == 0) //120
+	else if (first == 1 && second == 2 && third == 0)
 		rra(toolbox);
-	else if (first == 1 && second == 0 && third == 2) //102
+	else if (first == 1 && second == 0 && third == 2)
 		sa(toolbox);
-	else if (first == 2 && second == 1 && third == 0) //210
+	else if (first == 2 && second == 1 && third == 0)
 	{
 		sa(toolbox);
 		rra(toolbox);
 	}
-	else if (first == 2 && second == 0 && third == 1) //201
+	else if (first == 2 && second == 0 && third == 1)
 		ra(toolbox);
 }
 void	five_nums_sort(t_stacks *toolbox, int len)
