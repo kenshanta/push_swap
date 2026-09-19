@@ -1,70 +1,97 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_ops.c                                          :+:      :+:    :+:   */
+/*   lst_ops_sec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jziental <jziental@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/13 19:42:32 by jziental          #+#    #+#             */
-/*   Updated: 2026/09/18 17:03:29 by jziental         ###   ########.fr       */
+/*   Created: 2026/07/13 20:19:56 by jziental          #+#    #+#             */
+/*   Updated: 2026/09/09 16:55:23 by jziental         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+void	ft_lstadd_front(t_list **stack, t_list *new)
 {
-	t_list	*lstnew;
+	t_list	*head;
+	t_list	*last;
 
-	lstnew = (t_list *)malloc(sizeof(t_list));
-	if (lstnew == NULL)
-		return (NULL);
-	lstnew->num = content;
-	lstnew->index = 0;
-	lstnew->next = NULL;
-	lstnew->prev = NULL;
-	return (lstnew);
-}
-
-int	ft_lstsize(t_list *lst)
-{
-	int		size;
-	t_list	*tmp;
-
-	size = 0;
-	tmp = NULL;
-	if (lst)
-	{
-		size = 1;
-		tmp = lst->next;
-		while (tmp != lst)
-		{
-			size++;
-			lst = lst->next;
-			tmp = lst;
-		}
-	}
-	return (size);
-}
-
-t_list	*ft_lstlast(t_list *head)
-{
-	if (!head)
-		return (head);
-	return (head->prev);
-}
-
-void	ft_lstdelone(t_list **lst)
-{
-	if (!*lst)
+	if (!stack || !new)
 		return ;
-	if ((*lst)->next == *lst)
-		*lst = NULL;
-	else
+	head = *stack;
+	if (!head)
 	{
-		(*lst)->prev->next = (*lst)->next;
-		(*lst)->next->prev = (*lst)->prev;
+		*stack = new;
+		new->next = new;
+		new->prev = new;
+		return ;
 	}
-	free(*lst);
+	last = ft_lstlast(*stack);
+	last->next = new;
+	new->prev = last;
+	new->next = head;
+	head->prev = new;
+	*stack = new;
+}
+
+
+static void	ft_lstclear(t_list **lst)
+{
+	t_list	*tmp;
+	t_list	*node;
+
+	node = *lst;
+	tmp = NULL;
+	if (!lst || !*lst)
+		return ;
+	(*lst)->prev->next = NULL;
+	while (node)
+	{
+		if (node->next)
+			tmp = node->next;
+		else
+			tmp = NULL;
+		if (node->num != 0)
+			node->num = 0;
+		if (node->index != 0)
+			node->index = 0;
+		free(node);
+		node = tmp;
+	}
 	*lst = NULL;
+}
+
+void	ft_lstadd_back(t_list **stack, t_list *new)
+{
+	t_list	*last;
+	t_list	*head;
+
+	if (!stack || !new)
+		return ;
+	head = *stack;
+	if (!*stack || !head)
+	{
+		*stack = new;
+		new->next = new;
+		new->prev = new;
+		return ;
+	}
+	last = ft_lstlast(*stack);
+	last->next = new;
+	new->next = head;
+	new->prev = last;
+	head->prev = new;
+}
+
+void	ft_toolsfree(t_stacks **stacks)
+{
+	if (!stacks || !*stacks)
+		return ;
+	if ((*stacks)->a)
+		ft_lstclear(&(*stacks)->a);
+	if ((*stacks)->b)
+		ft_lstclear(&(*stacks)->b);
+	free(*stacks);
+	*stacks = NULL;
 }
