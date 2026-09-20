@@ -178,28 +178,30 @@ suggestions were reviewed, tested, and adapted by both learners.
 | 14 | `./push_swap --complex 6 1 5 2 4 3 \| wc -l` | Force complex sorting and print only the operation count. |
 | 15 | `./push_swap --adaptive 6 1 5 2 4 3 \| wc -l` | Force adaptive sorting and print only the operation count. |
 | 16 | `./push_swap --bench --mistake` | Invalid flag; expected result is `Error` on stderr. |
-| 17 | `./push_swap --bench --simple --complex --medium 6 1 5 2 4 3` | Multiple strategy flags are accepted; the last flag, `--medium`, is used and benchmark data is printed. |
+| 17 | `./push_swap --bench --simple` | Only flags and no integers; expected result is `Error` on stderr. |
 | 18 | `./push_swap --bench 1 2, 3` | Comma in an integer argument; expected result is `Error` on stderr. |
-| 19 | `./push_swap "-3 -2 -1" 5 7 -513 "213 " \| wc -l` | Check quoted arguments and whitespace handling while printing only the operation count. |
-| 20 | `./push_swap 1 1 2` | Duplicate integer; expected result is `Error` on stderr. |
-| 21 | `./push_swap 1 2 -3444555666` | Value below `INT_MIN`; expected result is `Error` on stderr. |
-| 22 | `./push_swap 1 2 3444555666` | Value above `INT_MAX`; expected result is `Error` on stderr. |
-| 23 | `./push_swap 1 2 +3` | Valid plus sign; the input should be accepted and sorted. |
-| 24 | `./push_swap 1 2 -3` | Valid minus sign; the input should be accepted and sorted. |
-| 25 | `./push_swap 1 2 +` | Sign without digits; expected result is `Error` on stderr. |
-| 26 | `./push_swap 1 2 abc` | Non-numeric argument; expected result is `Error` on stderr. |
-| 27 | `./push_swap --simple 1 2 3 \| ./checker_linux 1 2 3` | Send simple-strategy output to the checker; expected result is `OK`. |
-| 28 | `./push_swap --medium 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send medium-strategy output to the checker; expected result is `OK`. |
-| 29 | `./push_swap --complex 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send complex-strategy output to the checker; expected result is `OK`. |
-| 30 | `./push_swap --adaptive 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send adaptive-strategy output to the checker; expected result is `OK`. |
-| 31 | `shuf -i 0-9999 -n 100 > args.txt; ./push_swap $(cat args.txt) \| wc -l` | Generate 100 random integers and count the produced operations. |
-| 32 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| wc -l` | Generate 500 random integers and count the produced operations. |
-| 33 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| ./checker_linux $(cat args.txt)` | Verify adaptive sorting of 500 random integers with the checker. |
-| 34 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap --bench $(cat args.txt) 2>bench.txt \| ./checker_linux $(cat args.txt)` | Verify sorting and confirm benchmark data is written to `bench.txt` on stderr. |
-| 35 | `q` at any runner prompt | Stop the complete test run without closing the terminal. |
+| 19 | `./push_swap 1 1 2` | Duplicate integer; expected result is `Error` on stderr. |
+| 20 | `./push_swap 1 2 -3444555666` | Value below `INT_MIN`; expected result is `Error` on stderr. |
+| 21 | `./push_swap 1 2 3444555666` | Value above `INT_MAX`; expected result is `Error` on stderr. |
+| 22 | `./push_swap 1 2 +` | Sign without digits; expected result is `Error` on stderr. |
+| 23 | `./push_swap 1 2 abc` | Non-numeric argument; expected result is `Error` on stderr. |
+| 24 | `./push_swap 1 2 +3` | Valid plus sign; the input should be accepted and sorted. |
+| 25 | `./push_swap 1 2 -3` | Valid minus sign; the input should be accepted and sorted. |
+| 26 | `./push_swap --bench --simple --complex --medium 6 1 5 2 4 3` | Multiple strategy flags are accepted; the last flag, `--medium`, is used and benchmark data is printed. |
+| 27 | `./push_swap "-3 -2 -1" 5 7 -513 "213 " \| ./checker_linux "-3 -2 -1" 5 7 -513 "213 "` | Check quoted arguments and whitespace handling; expected result is `OK`. |
+| 28 | `./push_swap --simple 1 2 3 \| ./checker_linux 1 2 3` | Send simple-strategy output to the checker; expected result is `OK`. |
+| 29 | `./push_swap --medium 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send medium-strategy output to the checker; expected result is `OK`. |
+| 30 | `./push_swap --complex 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send complex-strategy output to the checker; expected result is `OK`. |
+| 31 | `./push_swap --adaptive 6 1 5 2 4 3 \| ./checker_linux 6 1 5 2 4 3` | Send adaptive-strategy output to the checker; expected result is `OK`. |
+| 32 | `shuf -i 0-9999 -n 100 > args.txt; ./push_swap $(cat args.txt) \| wc -l` | Generate 100 random integers and count the produced operations. |
+| 33 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| wc -l` | Generate 500 random integers and count the produced operations. |
+| 34 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap $(cat args.txt) \| ./checker_linux $(cat args.txt)` | Verify adaptive sorting of 500 random integers with the checker. |
+| 35 | `shuf -i 0-9999 -n 500 > args.txt; ./push_swap --bench $(cat args.txt) 2>bench.txt \| ./checker_linux $(cat args.txt)` | Verify sorting and confirm benchmark data is written to `bench.txt` on stderr. |
+| 36 | `q` at any runner prompt | Stop the complete test run without closing the terminal. |
 
-The runner prints the next command, waits for Enter, and then executes it. Type `q` and press
-Enter at any prompt to stop the complete test run.
+The runner prints a separator, the test title, and the command, then waits for
+Enter before executing the test. Type `q` and press Enter at any prompt to stop
+the complete test run.
 
 ```sh
 (
@@ -287,17 +289,20 @@ run_shell_test 'Force adaptive strategy: count operations' './push_swap --adapti
 
 # Invalid arguments.
 run_test 'Invalid flag' ./push_swap --bench --mistake
-run_shell_test 'Last strategy flag wins: show benchmark' './push_swap --bench --simple --complex --medium 6 1 5 2 4 3'
+run_test 'Only flags and no integers' ./push_swap --bench --simple
 run_test 'Invalid comma separator' ./push_swap --bench '1' '2,' '3'
-run_shell_test 'Quoted arguments and whitespace handling: count operations' \
-	'./push_swap "-3 -2 -1" 5 7 -513 "213 " | wc -l'
 run_test 'Duplicate integer' ./push_swap 1 1 2
 run_test 'Value below INT_MIN' ./push_swap 1 2 -3444555666
 run_test 'Value above INT_MAX' ./push_swap 1 2 3444555666
-run_test 'Accepted plus sign' ./push_swap 1 2 +3
-run_test 'Accepted minus sign' ./push_swap 1 2 -3
 run_test 'Sign without digits' ./push_swap 1 2 +
 run_test 'Non-numeric argument' ./push_swap 1 2 abc
+
+# Valid input and checker verification.
+run_test 'Accepted plus sign' ./push_swap 1 2 +3
+run_test 'Accepted minus sign' ./push_swap 1 2 -3
+run_shell_test 'Last strategy flag wins: show benchmark' './push_swap --bench --simple --complex --medium 6 1 5 2 4 3'
+run_shell_test 'Quoted arguments and whitespace handling: checker' \
+	'./push_swap "-3 -2 -1" 5 7 -513 "213 " | ./checker_linux "-3 -2 -1" 5 7 -513 "213 "'
 
 # Checker verification.
 run_shell_test 'Checker: simple strategy' \
