@@ -241,7 +241,7 @@ run_test()
 	print_separator
 	printf '%b\n' "${cyan}>>> $description${reset}"
 	printf 'Command:'
-	printf ' %q' "$@"
+	printf ' %s' "$@"
 	printf '\n'
 	wait_for_enter
 	"$@"
@@ -252,10 +252,10 @@ run_shell_test()
 	local description="$1"
 	local command="$2"
 	print_separator
-	printf '%b\nCommand: %s\n' "${cyan}>>> $description${reset}" "$command"
+	printf '%b\n' "${cyan}>>> $description${reset}"
+	printf '%b\n' "Command: $command"
 	wait_for_enter
 	bash -c "$command"
-	printf '\n'
 }
 
 # Basic input and sorting cases.

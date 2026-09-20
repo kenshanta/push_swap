@@ -35,7 +35,7 @@ run_test()
 	print_separator
 	printf '%b\n' "${cyan}>>> $description${reset}"
 	printf 'Command:'
-	printf ' %q' "$@"
+	printf ' %s' "$@"
 	printf '\n'
 	wait_for_enter
 	"$@"
