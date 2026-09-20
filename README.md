@@ -98,7 +98,7 @@ The algorithm first compares each pair of elements to calculate disorder, which 
 
 | Contributor | Responsibilities |
 |-------------|------------------|
-| skovlekj | Project setup, input validation, sorting strategies (medium), Refactoring/Cleanup and git control flow. |
+| skovlekj | Project setup, input validation, sorting strategies (medium), Refactoring/Cleanup and git wokrflow & branching strategy. |
 | jziental | Indexing, disorder calculation, argument parsing, sorting strategies (simple, complex, adaptive), benchmarking, and performance testing. |
 | Both contributors | Algorithm discussions, debugging, manual testing, Norm checks, and final integration. |
 
